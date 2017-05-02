@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="user" namespace="/user" extends="struts-default">
+        <action name="login" class="com.baizhi.action.UserAction" method="login">
+            <result name="success" type="redirect">/main/main.jsp</result>
+            <result name="login" type="redirect">/user/login_form.jsp</result>
+        </action>
+        <action name="register" class="com.baizhi.action.UserAction" method="register">
+            <result name="success" type="dispatcher">verify_form.jsp</result>
+            <result name="register" type="dispatcher">/user/register_form.jsp</result>
+        </action>
+        <action name="checkUUID" class="com.baizhi.action.UserAction" method="checkUUID">
+            <result name="success" type="dispatcher">/user/register_ok.jsp</result>
+            <result name="verify" type="chain">register</result>
+        </action>
+    </package>
+</struts>

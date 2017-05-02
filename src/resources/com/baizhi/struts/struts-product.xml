@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="product" namespace="/product" extends="struts-default">
+
+        <action name="findBooks" class="com.baizhi.action.ProductAction" method="findBooks">
+            <result name="success" type="dispatcher">/main/main.jsp</result>
+        </action>
+
+        <action name="recommendBooks" class="com.baizhi.action.ProductAction" method="recommendBooks">
+            <result name="success" type="dispatcher">/main/recommend.jsp</result>
+        </action>
+
+        <action name="findBooksOrderByXX" class="com.baizhi.action.ProductAction" method="findBooksOrderByXX">
+            <result name="count" type="dispatcher">/main/hot.jsp</result>
+            <result name="publishTime" type="dispatcher">/main/new.jsp</result>
+            <result name="newAndHot" type="dispatcher">/main/hotBoard.jsp</result>
+        </action>
+
+        <action name="bookDetails" class="com.baizhi.action.ProductAction" method="bookDetails">
+            <result name="success" type="dispatcher">/main/product.jsp</result>
+        </action>
+    </package>
+</struts>

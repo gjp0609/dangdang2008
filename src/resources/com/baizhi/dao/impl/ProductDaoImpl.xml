@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ProductDao">
+
+    <resultMap id="ProductRM" type="Product">
+        <id property="id" column="id"/>
+        <association property="category" javaType="Category">
+            <id property="id" column="categoryId"/>
+            <result property="name" column="categoryName"/>
+        </association>
+    </resultMap>
+
+    <sql id="selectProduct">
+        SELECT
+            P.ID,
+            TITLE,
+            REAL_PRICE     realPrice,
+            PRICE,
+            SERIES,
+            AUTHOR,
+            COUNT,
+            PUBLISHER,
+            PUBLISH_TIME   publishTime,
+            PUBLISH_EDTION publishEdtion,
+            PRINT_TIME     printTime,
+            PRINT_EDTION   printEdtion,
+            ISBN,
+            WORD_COUNT     wordCount,
+            PAGE_COUNT     pageCount,
+            BOOK_SIZE      bookSize,
+            PAPER,
+            PACK,
+            IMG_SRC        imgSrc,
+            CATEGORY_ID    categoryId,
+            STAR,
+            RECOMMEND,
+            DETAILS,
+            AUTHOR_DETAILS authorDetails,
+            CATALOGUE,
+            COMMEND,
+            DIGEST,
+            -- C.ID categoryId,
+            C.NAME         castegoryName,
+            ROWNUM         rn
+        FROM T_DANGDANG_PRODUCT P LEFT JOIN T_DANGDANG_CATEGORY C ON P.CATEGORY_ID = C.ID
+    </sql>
+
+    <select id="selectProductByCdt" resultType="Product">
+        SELECT *
+        FROM (
+        SELECT EE.*, ROWNUM rn2 FROM (
+        <include refid="selectProduct"/>
+        <where>
+            <if test="product.id!=null">P.ID = #{product.id}</if>
+            <if test="product.category!=null">
+                <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id}</if>
+            </if>
+        </where>
+        <if test="orderName!=null">ORDER BY ${orderName}
+            <if test="order==-1">desc</if>
+        </if>
+        ) EE
+        )
+        <where>
+            <if test="firstRow!=null">
+                rn2 between #{firstRow} and #{lastRow}
+            </if>
+        </where>
+
+    </select>
+    <select id="selectRecommendProduct" resultType="Product">
+        SELECT *
+        FROM (
+        <include refid="selectProduct"/>
+        )
+        WHERE rn IN
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectTotalRows" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM T_DANGDANG_PRODUCT
+    </select>
+</mapper>
