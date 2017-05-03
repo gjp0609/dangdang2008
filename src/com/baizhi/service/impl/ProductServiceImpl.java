@@ -14,8 +14,9 @@ import java.util.*;
 public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findProductByCdt(Product product, Page page, String orderName, Integer order) {
-        List<Product> productList = null;
+        List<Product> productList;
         ProductDao dao = MyBatisUtils.getMapper(ProductDao.class);
+        int totalRows = dao.selectTotalRows();
         if (orderName == null) order = null;
         if (page != null) {
             page.setTotalRows(dao.selectTotalRows());

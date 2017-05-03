@@ -10,8 +10,8 @@
             <div class=second_c_02_b1>
                 <div class=second_c_02_b1_1>
                     <a href='<s:url namespace="/product" action="bookDetails">
-                            <s:param name="id" value="#book.id"/></s:url>' target='_blank'><img
-                            src="../<s:property value="#book.imgSrc"/>" width="70px" border=0/>
+                            <s:param name="id" value="#book.id"/></s:url>' target='_blank'>
+                        <img class="pic" src="../<s:property value="#book.imgSrc"/>" width="70px" border=0/>
                     </a>
                 </div>
                 <div class=second_c_02_b1_2>

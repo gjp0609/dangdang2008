@@ -8,6 +8,7 @@ import java.util.List;
 public class Category {
     private Integer id;
     private String name;
+    private Integer count;
     private Category parentCategory;
     private List<Category> categoryList;
 
@@ -16,6 +17,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", count=" + count +
                 ", parentCategory=" + parentCategory +
                 ", categoryList=" + categoryList +
                 '}';
@@ -51,5 +53,13 @@ public class Category {
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

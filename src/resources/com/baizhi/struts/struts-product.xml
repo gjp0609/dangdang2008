@@ -24,5 +24,9 @@
         <action name="bookDetails" class="com.baizhi.action.ProductAction" method="bookDetails">
             <result name="success" type="dispatcher">/main/product.jsp</result>
         </action>
+
+        <action name="bookList" class="com.baizhi.action.ProductAction" method="bookList">
+            <result name="success" type="dispatcher">/main/list.jsp</result>
+        </action>
     </package>
 </struts>

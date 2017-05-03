@@ -53,7 +53,8 @@
                 </DIV>
                 <DIV class="book_left">
                     <DIV class="book_pic">
-                        <IMG id="img_show_prd" src="../<s:property value="product.imgSrc"/>" width="140px"></DIV>
+                        <IMG class="pic" id="img_show_prd" src="../<s:property value="product.imgSrc"/>" width="140px">
+                    </DIV>
                     <INPUT id="hid_largepictureurl" type="hidden"/></DIV>
                 <DIV class="book_right">
                     <DIV id="author_">作 　 者：<s:property value="product.author"/></DIV>
@@ -70,18 +71,7 @@
                         <LI>I S B N：<s:property value="product.isbn"/></LI>
                         <LI>包　　装： <s:property value="product.pack"/></LI>
                     </UL>
-
-                    <%--<A class="blue12a"--%>
-                    <%--href="http://product.dangdang.com/category.ashx?code=01.00.00.00.00.00"--%>
-                    <%--target=_blank>图书</A> &gt;&gt; <A class="blue12a"--%>
-                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.00.00.00.00"--%>
-                    <%--target=_blank>社会科学</A> &gt;&gt; <A--%>
-                    <%--class="blue12a"--%>
-                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.00.00.00"--%>
-                    <%--target=_blank>教育</A> &gt;&gt; <A class="blue12a"--%>
-                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.04.00.00"--%>
-                    <%--target=_blank>各级教育</A>--%>
-                    <DIV id="__categroy_bk">所属分类：
+                    <DIV id="__categroy_bk">所属分类：图书 >>
                         <s:action namespace="/category" name="findParent" executeResult="true">
                             <s:param name="id" value="product.category.id"/>
                         </s:action></DIV>
@@ -150,5 +140,28 @@
         <!--页尾结束 -->
     </DIV>
 </DIV>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script>
+    $(".pic").mouseover(function () {
+        var src = this.src;
+        var tooltip = "<div id='tooltip''><img width='300px' " +
+            "src='' alt='产品预览图'/><\/div>"; //创建 div 元素
+        $("body").append(tooltip);  //把它追加到文档中
+        $("#tooltip").find("img").attr("src", src);
+    }).mousemove(function () {
+        var event = window.event;
+        var left = event.clientX + 10;
+        var top = event.clientY - 200;
+        var img = $("#tooltip");
+        img.css("display", "block");
+        img.css("position", "fixed");
+        img.css("left", left + "px");
+        img.css("top", top + "px");
+    }).mouseout(function () {
+        $("#tooltip").remove();
+    });
+
+</script>
+
 </BODY>
 </HTML>

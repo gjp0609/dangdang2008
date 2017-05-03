@@ -14,11 +14,14 @@ import java.util.List;
 public class ProductAction extends BaseAction {
     private Page page = new Page();
     private Integer id = 0;
-    private String type = "";
     // 单个书籍
     private Product product = new Product();
     // 查询书籍列表，在主页中通过调用 action 得到数据，再通过此属性传输到对应的 jsp 页面
     private List<Product> productList = new ArrayList<>();
+
+    private String type = ""; // orderName
+    private Integer order;
+
 
     public String findBooks() {
         return SUCCESS;
@@ -50,6 +53,13 @@ public class ProductAction extends BaseAction {
         List<Product> list = service.findProductByCdt(p, null, null, null);
         if (list != null && list.size() == 1) product = list.get(0);
         System.out.println(list + " " + product);
+        return SUCCESS;
+    }
+
+    public String bookList() {
+        System.out.println(type + " " + order);
+        ProductServiceImpl service = new ProductServiceImpl();
+        productList = service.findProductByCdt(product, page, type, order);
         return SUCCESS;
     }
 
@@ -91,5 +101,13 @@ public class ProductAction extends BaseAction {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }

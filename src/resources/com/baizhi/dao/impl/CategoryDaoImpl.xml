@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.CategoryDao">
-    <resultMap id="CategoryRM" type="Category">
+    <resultMap id="CategoryRM" type="Category" autoMapping="true">
         <id property="id" column="id"/>
-        <result property="name" column="name"/>
         <association property="parentCategory" select="findParentCategory" column="parentId"/>
         <collection property="categoryList" select="findCategories" column="id"/>
     </resultMap>
@@ -11,6 +10,7 @@
         SELECT
         ID,
         NAME,
+        COUNT,
         PARENT_ID parentId
         FROM T_DANGDANG_CATEGORY
         <where>
@@ -26,7 +26,8 @@
     <select id="findCategories" resultType="Category">
         SELECT
             ID,
-            NAME
+            NAME,
+            COUNT
         FROM T_DANGDANG_CATEGORY
         WHERE PARENT_ID = #{id}
     </select>
@@ -34,7 +35,8 @@
     <select id="findParentCategory" resultType="Category">
         SELECT
             ID,
-            NAME
+            NAME,
+            COUNT
         FROM T_DANGDANG_CATEGORY
         WHERE ID = #{parentId}
     </select>

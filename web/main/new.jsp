@@ -9,11 +9,12 @@
             <div class="img">
                 <a href="<s:url namespace="/product" action="bookDetails">
                             <s:param name="id" value="#book.id"/></s:url>" target='_blank'>
-                    <img src="../<s:property value="#book.imgSrc"/>" border=0/> </a>
+                    <img class="pic" src="../<s:property value="#book.imgSrc"/>" border=0/> </a>
             </div>
             <div class="shuming">
                 <a href="<s:url namespace="/product" action="bookDetails">
-                            <s:param name="id" value="#book.id"/></s:url>" target="_blank"><s:property value="#book.title"/></a>
+                            <s:param name="id" value="#book.id"/></s:url>" target="_blank"><s:property
+                        value="#book.title"/></a>
                 <a href="#" target="_blank"></a>
             </div>
             <div class="price">

@@ -12,5 +12,8 @@
         <action name="findParent" class="com.baizhi.action.CategoryAction" method="findParent">
             <result name="success" type="dispatcher">/main/cate.jsp</result>
         </action>
+        <action name="findChildren" class="com.baizhi.action.CategoryAction" method="findChildren">
+            <result name="success" type="dispatcher">/main/cate_list.jsp</result>
+        </action>
     </package>
 </struts>

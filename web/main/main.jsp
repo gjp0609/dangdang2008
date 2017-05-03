@@ -9,6 +9,7 @@
         .debugTable tbody tr td:first-child {
             width: 80px;
         }
+
     </style>
 </head>
 <body>
@@ -17,6 +18,9 @@
 <!-- 头部开始 -->
 <%@include file="../common/head.jsp" %>
 <!-- 头部结束 -->
+
+<span id="asd123"></span>
+
 <div style="width: 962px; margin: auto;">
     <a href="#" target="_blank"><img src="../images/default/book_banner_081203.jpg" border="0"/> </a>
 </div>
@@ -83,6 +87,29 @@
 <footer>
     <s:debug/>
 </footer>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script>
+    $(".pic").mouseover(function () {
+        var src = this.src;
+        var tooltip = "<div id='tooltip''><img width='300px' " +
+            "src='' alt='产品预览图'/><\/div>"; //创建 div 元素
+        $("body").append(tooltip);  //把它追加到文档中
+        $("#tooltip").find("img").attr("src", src);
+    }).mousemove(function () {
+        var event = window.event;
+        var left = event.clientX + 10;
+        var top = event.clientY - 200;
+        var img = $("#tooltip");
+        img.css("display", "block");
+        img.css("position", "fixed");
+        img.css("left", left + "px");
+        img.css("top", top + "px");
+    }).mouseout(function () {
+        $("#tooltip").remove();
+    });
+
+</script>
+
 </body>
 
 </html>

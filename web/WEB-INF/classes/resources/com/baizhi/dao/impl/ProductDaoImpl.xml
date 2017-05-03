@@ -7,6 +7,7 @@
         <association property="category" javaType="Category">
             <id property="id" column="categoryId"/>
             <result property="name" column="categoryName"/>
+            <result property="count" column="categoryCount"/>
         </association>
     </resultMap>
 
@@ -18,7 +19,7 @@
             PRICE,
             SERIES,
             AUTHOR,
-            COUNT,
+            P.COUNT,
             PUBLISHER,
             PUBLISH_TIME   publishTime,
             PUBLISH_EDTION publishEdtion,
@@ -41,6 +42,7 @@
             DIGEST,
             -- C.ID categoryId,
             C.NAME         castegoryName,
+            C.COUNT        categoryCount,
             ROWNUM         rn
         FROM T_DANGDANG_PRODUCT P LEFT JOIN T_DANGDANG_CATEGORY C ON P.CATEGORY_ID = C.ID
     </sql>
@@ -48,18 +50,18 @@
     <select id="selectProductByCdt" resultMap="ProductRM">
         SELECT *
         FROM (
-            SELECT EE.*, ROWNUM rn2 FROM (
-                <include refid="selectProduct"/>
-                <where>
-                    <if test="product.id!=null">P.ID = #{product.id}</if>
-                    <if test="product.category!=null">
-                        <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id}</if>
-                    </if>
-                </where>
-                <if test="orderName!=null">ORDER BY ${orderName}
-                    <if test="order==-1">desc</if>
-                </if>
-            ) EE
+        SELECT EE.*, ROWNUM rn2 FROM (
+        <include refid="selectProduct"/>
+        <where>
+            <if test="product.id!=null">P.ID = #{product.id}</if>
+            <if test="product.category!=null">
+                <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id}</if>
+            </if>
+        </where>
+        <if test="orderName!=null">ORDER BY ${orderName}
+            <if test="order==-1">desc</if>
+        </if>
+        ) EE
         )
         <where>
             <if test="firstRow!=null">
