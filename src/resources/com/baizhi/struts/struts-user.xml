@@ -7,8 +7,8 @@
 <struts>
     <package name="user" namespace="/user" extends="struts-default">
         <action name="login" class="com.baizhi.action.UserAction" method="login">
-            <result name="success" type="redirect">/main/main.jsp</result>
-            <result name="login" type="redirect">/user/login_form.jsp</result>
+            <result name="success" type="dispatcher">/main/main.jsp</result>
+            <result name="login" type="dispatcher">/user/login_form.jsp</result>
         </action>
         <action name="register" class="com.baizhi.action.UserAction" method="register">
             <result name="success" type="dispatcher">verify_form.jsp</result>

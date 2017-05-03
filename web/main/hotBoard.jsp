@@ -7,7 +7,8 @@
 <div id="NewProduct_1_o_t" onmouseover="">
     <ul>
         <s:iterator value="productList" var="book">
-            <li><a target='_blank' href=""><s:property value="#book.title"/></a></li>
+            <li><a target='_blank' href="<s:url namespace="/product" action="bookDetails">
+                            <s:param name="id" value="#book.id"/></s:url>"><s:property value="#book.title"/></a></li>
         </s:iterator>
     </ul>
     <h3 class="second">

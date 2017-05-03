@@ -184,3 +184,43 @@ FROM (
   FROM T_DANGDANG_PRODUCT P LEFT JOIN T_DANGDANG_CATEGORY C ON P.CATEGORY_ID = C.ID);
 
 SELECT * FROM T_DANGDANG_PRODUCT;
+
+
+
+SELECT *
+FROM (
+  SELECT EE.*, ROWNUM rn2 FROM (
+    SELECT
+      P.ID,
+      TITLE,
+      REAL_PRICE     realPrice,
+      PRICE,
+      SERIES,
+      AUTHOR,
+      COUNT,
+      PUBLISHER,
+      PUBLISH_TIME   publishTime,
+      PUBLISH_EDTION publishEdtion,
+      PRINT_TIME     printTime,
+      PRINT_EDTION   printEdtion,
+      ISBN,
+      WORD_COUNT     wordCount,
+      PAGE_COUNT     pageCount,
+      BOOK_SIZE      bookSize,
+      PAPER,
+      PACK,
+      IMG_SRC        imgSrc,
+      CATEGORY_ID    categoryId,
+      STAR,
+      RECOMMEND,
+      DETAILS,
+      AUTHOR_DETAILS authorDetails,
+      CATALOGUE,
+      COMMEND,
+      DIGEST,
+      -- C.ID categoryId,
+      C.NAME         castegoryName,
+      ROWNUM         rn
+    FROM T_DANGDANG_PRODUCT P LEFT JOIN T_DANGDANG_CATEGORY C ON P.CATEGORY_ID = C.ID
+) EE
+)

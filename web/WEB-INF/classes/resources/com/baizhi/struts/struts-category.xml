@@ -9,5 +9,8 @@
         <action name="findCategories" class="com.baizhi.action.CategoryAction" method="findCategories">
             <result name="success" type="dispatcher">/main/category.jsp</result>
         </action>
+        <action name="findParent" class="com.baizhi.action.CategoryAction" method="findParent">
+            <result name="success" type="dispatcher">/main/cate.jsp</result>
+        </action>
     </package>
 </struts>

@@ -53,7 +53,7 @@
                 </DIV>
                 <DIV class="book_left">
                     <DIV class="book_pic">
-                        <IMG id="img_show_prd" src="../<s:property value="product.imgSrc"/>"></DIV>
+                        <IMG id="img_show_prd" src="../<s:property value="product.imgSrc"/>" width="140px"></DIV>
                     <INPUT id="hid_largepictureurl" type="hidden"/></DIV>
                 <DIV class="book_right">
                     <DIV id="author_">作 　 者：<s:property value="product.author"/></DIV>
@@ -70,16 +70,21 @@
                         <LI>I S B N：<s:property value="product.isbn"/></LI>
                         <LI>包　　装： <s:property value="product.pack"/></LI>
                     </UL>
-                    <DIV id="__categroy_bk">所属分类： <A class="blue12a"
-                                                     href="http://product.dangdang.com/category.ashx?code=01.00.00.00.00.00"
-                                                     target=_blank>图书</A> &gt;&gt; <A class="blue12a"
-                                                                                      href="http://product.dangdang.com/category.ashx?code=01.30.00.00.00.00"
-                                                                                      target=_blank>社会科学</A> &gt;&gt; <A
-                            class="blue12a"
-                            href="http://product.dangdang.com/category.ashx?code=01.30.07.00.00.00"
-                            target=_blank>教育</A> &gt;&gt; <A class="blue12a"
-                                                             href="http://product.dangdang.com/category.ashx?code=01.30.07.04.00.00"
-                                                             target=_blank>各级教育</A></DIV>
+
+                    <%--<A class="blue12a"--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code=01.00.00.00.00.00"--%>
+                    <%--target=_blank>图书</A> &gt;&gt; <A class="blue12a"--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.00.00.00.00"--%>
+                    <%--target=_blank>社会科学</A> &gt;&gt; <A--%>
+                    <%--class="blue12a"--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.00.00.00"--%>
+                    <%--target=_blank>教育</A> &gt;&gt; <A class="blue12a"--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.04.00.00"--%>
+                    <%--target=_blank>各级教育</A>--%>
+                    <DIV id="__categroy_bk">所属分类：
+                        <s:action namespace="/category" name="findParent" executeResult="true">
+                            <s:param name="id" value="product.category.id"/>
+                        </s:action></DIV>
                     <DIV class="jiage"><SPAN class="gray87">定价：<SPAN class="del" id="originalPriceTag">
                         ￥<s:property value="product.realPrice"/></SPAN></SPAN>
                         <SPAN class="redc30">当当价：￥<B><s:property value="product.price"/></B></SPAN>

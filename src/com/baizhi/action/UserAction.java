@@ -27,16 +27,19 @@ public class UserAction extends BaseAction {
      */
     public String login() {
         try {
+            System.err.println("login123");
             UserService service = new UserServiceImpl();
             User newUser = service.findUser(user.getEmail());
             if (newUser == null) throw new RuntimeException("未找到该用户");
             String pwd = SecurityUtils.getMD5(user.getPassword() + newUser.getSalt());
             if (pwd == null || !pwd.equals(newUser.getPassword())) throw new RuntimeException("密码错误");
-            if (newUser.getStatus() == null || !newUser.getStatus().equals("y"))
+            if (newUser.getStatus() == null || !newUser.getStatus().equalsIgnoreCase("Y"))
                 throw new RuntimeException("该用户尚未激活");
             setSessionValue("user", newUser);
+            System.err.println("login");
         } catch (Exception e) {
             msg = e.getMessage();
+            e.printStackTrace();
             return LOGIN;
         }
         return SUCCESS;
@@ -61,8 +64,10 @@ public class UserAction extends BaseAction {
             service.addUser(user);
             String uuid = UUID.randomUUID().toString().replace("-", "");
             setSessionValue("uuid", uuid);
+            System.out.println(uuid);
         } catch (Exception e) {
             msg = e.getMessage();
+            e.printStackTrace();
             return "register";
         }
         return SUCCESS;
@@ -74,15 +79,18 @@ public class UserAction extends BaseAction {
      * @return verify 跳转至验证页面<br/>SUCCESS 跳转至注册成功页面
      */
     public String checkUUID() {
+        int i = 0;
         try {
             if (typeUUID == null) throw new RuntimeException("请输入验证码");
             if (typeUUID.length() != 32) throw new RuntimeException("验证码不完整");
-//            System.out.println(typeUUID + " " + getSessionValue("uuid"));
             if (!typeUUID.equals(getSessionValue("uuid"))) throw new RuntimeException("验证码不正确");
             user.setStatus("Y");
-            int i = new UserServiceImpl().modifyUser(user);
+            i = new UserServiceImpl().modifyUser(user);
+            System.out.println(i);
         } catch (Exception e) {
             msg = e.getMessage();
+            e.printStackTrace();
+            System.out.println(i);
             return "verify";
         }
         return SUCCESS;

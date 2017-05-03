@@ -30,8 +30,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findRecommendProduct() {
         ProductDao dao = MyBatisUtils.getMapper(ProductDao.class);
         int i = dao.selectTotalRows();
-        Random random = new Random(new Date().getTime());
         List<Integer> list = new ArrayList<>();
+
+        Random random = new Random(new Date().getTime());
         int a = random.nextInt(i);
         int b;
         do {

@@ -43,6 +43,8 @@
 </div>
 
 <%@include file="../common/foot1.jsp" %>
+
+<s:debug/>
 </body>
 </html>
 
