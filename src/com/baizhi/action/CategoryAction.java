@@ -30,7 +30,6 @@ public class CategoryAction extends BaseAction {
      * @return 跳转至 cate.jsp
      */
     public String findParent() {
-        System.out.println(id);
         Category category = new Category();
         category.setId(id);
         categoryList = new CategoryServiceImpl().findCategory(category);
@@ -53,7 +52,7 @@ public class CategoryAction extends BaseAction {
             if (category.getParentCategory() != null)
                 category = service.findCategory(category.getParentCategory()).get(0);
         }
-        System.err.println(id + "   " + category);
+        System.err.println("分类："+id + "   " + category);
         return SUCCESS;
     }
 

@@ -1,5 +1,4 @@
 <%@page contentType="text/html;charset=utf-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>当当图书 – 全球最大的中文网上书店</title>
@@ -7,6 +6,11 @@
     <link href="../css/second.css" rel="stylesheet" type="text/css"/>
     <link href="../css/secBook_Show.css" rel="stylesheet" type="text/css"/>
     <link href="../css/list.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .debugTable tr td {
+            width: 500px;
+        }
+    </style>
 </head>
 <body>
 &nbsp;
@@ -20,10 +24,10 @@
 </div>
 <div class='your_position'>
     您现在的位置:&nbsp;
-    <a href='#'>当当图书 </a> >>
+    <a href='<s:url value="main.jsp"/>'>当当图书 </a> >>
     <span style='color: #cc3300'><strong>
         <s:action namespace="/category" name="findParent" executeResult="true">
-            <s:param name="id" value="#parameters.cateId"/>
+            <s:param name="id" value="product.category.id"/>
         </s:action></strong> </span>
 </div>
 
@@ -31,7 +35,7 @@
 
     <!--左栏开始-->
     <s:action namespace="/category" name="findChildren" executeResult="true">
-        <s:param name="id" value="#parameters.cateId"/>
+        <s:param name="id" value="product.category.id"/>
     </s:action>
 
     <!--左栏结束-->
@@ -47,54 +51,111 @@
                     排序方式
                 </div>
 
-                <select title="" name='type' size='1'
+                <select id="type" title="" name='type' size='1'
                         class='list_r_title_ml'>
                     <option selected value="publishTime">按上架时间</option>
                     <option value="count">按销量</option>
                     <option value="price">按价格</option>
+                    <option value="star">按评分</option>
                 </select>
-                <select title="" name='order' size='1'
+                <select id="order" title="" name='order' size='1'
                         class='list_r_title_ml'>
-                    <option selected value="publishTime">升序</option>
-                    <option value="publishTime">降序</option>
+                    <option selected value="1">升序</option>
+                    <option value="-1">降序</option>
                 </select>
                 <div id="divTopPageNavi" class="list_r_title_text3">
 
                     <!--分页导航开始-->
 
-                    <div class='list_r_title_text3a'>
-                        <a name=link_page_next
-                           href="#">
-                            <img src='../images/page_up.gif'/> </a>
-                    </div>
-
-                    <div class='list_r_title_text3a'>
-                        <img src='../images/page_up_gray.gif'/>
-                    </div>
+                    <s:if test="page.hasPrePage">
+                        <div class='list_r_title_text3a'>
+                            <a name=link_page_next
+                               href="<s:url namespace="/product" action="bookList">
+                               <s:param name="type" value="type"/>
+                               <s:param name="order" value="order"/>
+                               <s:param name="product.category.id" value="product.category.id"/>
+                               <s:param name="page.pageIndex" value="page.pageIndex-1"/></s:url>">
+                                <img src='../images/page_up.gif'/> </a>
+                        </div>
+                    </s:if>
+                    <s:else>
+                        <div class='list_r_title_text3a'>
+                            <img src='../images/page_up_gray.gif'/>
+                        </div>
+                    </s:else>
 
                     <div class='list_r_title_text3b'>
-                        第1页/共5页
+                        第<s:property value="page.pageIndex"/>页/共<s:property value="page.totalPages"/>页
                     </div>
 
-                    <div class='list_r_title_text3a'>
-                        <a name=link_page_next
-                           href="#">
-                            <img src='../images/page_down.gif'/> </a>
-                    </div>
+                    <s:if test="page.hasNextPage">
+                        <div class='list_r_title_text3a'>
+                            <a name=link_page_next
+                               href="<s:url namespace="/product" action="bookList">
+                               <s:param name="type" value="type"/>
+                               <s:param name="order" value="order"/>
+                               <s:param name="product.category.id" value="product.category.id"/>
+                               <s:param name="page.pageIndex" value="page.pageIndex+1"/></s:url>">
+                                <img src='../images/page_down.gif'/> </a>
+                        </div>
+                    </s:if>
+                    <s:else>
+                        <div class='list_r_title_text3a'>
+                            <img src='../images/page_down_gray.gif'/>
+                        </div>
+                    </s:else>
 
-                    <div class='list_r_title_text3a'>
-                        <img src='../images/page_down_gray.gif'/>
-                    </div>
 
                     <!--分页导航结束-->
                 </div>
             </div>
 
             <!--商品条目开始-->
-            <s:action namespace="/product" name="bookList">
-                <s:param name="type" value="type"/>
-                <s:param name="order" value="order"/>
-            </s:action>
+            <div class="list_r_line"></div>
+            <div class="clear"></div>
+
+            <s:iterator value="productList" var="book">
+                <div class="clear"></div>
+                <div class="list_r_list">
+                <span class="list_r_list_book"><a name="link_prd_img"
+                                                  href='<s:url namespace="/product" action="bookDetails">
+                            <s:param name="id" value="#book.id"/></s:url>'>
+                    <img src="../<s:property value="#book.imgSrc"/>"/> </a> </span>
+                    <h2>
+                        <a name="link_prd_name" href='<s:url namespace="/product" action="bookDetails">
+                            <s:param name="id" value="#book.id"/></s:url>'>
+                            <s:property value="#book.title"/></a>
+                    </h2>
+                    <h3>
+                        顾客评分：<s:property value="#book.star"/>
+                    </h3>
+                    <h4 class="list_r_list_h4">
+                        作 者:
+                        <a href='#' name='作者'><s:property value="#book.author"/></a>
+                    </h4>
+                    <h4>
+                        出版社：
+                        <a href='#' name='出版社'><s:property value="#book.publisher"/></a>
+                    </h4>
+                    <h4>
+                        出版时间：<s:date name="#book.publishTime" format="yyyy-MM-dd"/>
+                    </h4>
+                    <h5>
+                        <s:property value="#book.details"/>
+                    </h5>
+                    <div class="clear"></div>
+                    <h6>
+                        <span class="del">￥<s:property value="#book.realPrice"/></span>
+                        <span class="red">￥<s:property value="#book.price"/></span>
+                        节省：￥<s:property value="#book.realPrice-#book.price"/>
+                    </h6>
+                    <span class="list_r_list_button">
+                    <a href="#"><img src='../images/buttom_goumai.gif'/> </a>
+                    <%--<span id="cartinfo"></span>--%>
+                </span>
+                </div>
+                <div class="clear"></div>
+            </s:iterator>
             <!--商品条目结束-->
 
             <div class="clear"></div>
@@ -113,6 +174,37 @@
 <%@include file="../common/foot.jsp" %>
 <!--页尾结束 -->
 
-<s:debug/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script>
+
+    var type = '<s:property value="type"/>';
+    var order = '<s:property value="order"/>';
+    $(function () {
+        if (type === "publishTime") {
+            $("#type").find("option[value='publishTime']").attr("selected", "selected");
+        } else if (type === "count") {
+            $("#type").find("option[value='count']").attr("selected", "selected");
+        } else if (type === "price") {
+            $("#type").find("option[value='price']").attr("selected", "selected");
+        } else if (type === "star") {
+            $("#type").find("option[value='star']").attr("selected", "selected");
+        }
+        if (order === '1') {
+            $("#order").find("option[value='1']").attr("selected", "selected");
+        } else if (order === '-1') {
+            $("#order").find("option[value='-1']").attr("selected", "selected");
+        }
+    });
+    var id = '<s:property value="product.category.id"/>';
+    $("select").change(function () {
+        type = $("#type").find("option:selected").val();
+        order = $("#order").find("option:selected").val();
+        window.location.href = '<s:url namespace="/product" action="bookList"/>?order='
+            + order + '&type=' + type + '&product.category.id=' + id;
+    });
+
+</script>
+
+<s:debug class="ee"/>
 </body>
 </html>

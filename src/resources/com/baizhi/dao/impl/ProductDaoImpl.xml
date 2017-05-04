@@ -42,6 +42,7 @@
             DIGEST,
             -- C.ID categoryId,
             C.NAME         castegoryName,
+            C.PARENT_ID    parentCategoryId,
             C.COUNT        categoryCount,
             ROWNUM         rn
         FROM T_DANGDANG_PRODUCT P LEFT JOIN T_DANGDANG_CATEGORY C ON P.CATEGORY_ID = C.ID
@@ -55,7 +56,9 @@
         <where>
             <if test="product.id!=null">P.ID = #{product.id}</if>
             <if test="product.category!=null">
-                <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id}</if>
+                <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id} OR C.PARENT_ID=
+                    #{product.category.id}
+                </if>
             </if>
         </where>
         <if test="orderName!=null">ORDER BY ${orderName}
@@ -85,9 +88,9 @@
         SELECT count(*)
         FROM T_DANGDANG_PRODUCT
         <where>
-            <if test="product.id!=null">P.ID = #{product.id}</if>
-            <if test="product.category!=null">
-                <if test="product.category.id!=null">CATEGORY_ID = #{product.category.id}</if>
+            <if test="id!=null">P.ID = #{id}</if>
+            <if test="category!=null">
+                <if test="category.id!=null">CATEGORY_ID = #{category.id}</if>
             </if>
         </where>
     </select>

@@ -91,20 +91,26 @@
 <script>
     $(".pic").mouseover(function () {
         var src = this.src;
-        var tooltip = "<div id='tooltip''><img width='300px' " +
-            "src='' alt='产品预览图'/><\/div>"; //创建 div 元素
-        $("body").append(tooltip);  //把它追加到文档中
+        // 新建 div
+        var tooltip = "<div id='tooltip'><img width='300px' src=''/><\/div>";
+        // 把它追加到文档中
+        $("body").append(tooltip);
         $("#tooltip").find("img").attr("src", src);
-    }).mousemove(function () {
+    }).mousemove(function () {// 鼠标移动
+        // 新建事件
         var event = window.event;
+        // 获取鼠标位置
         var left = event.clientX + 10;
         var top = event.clientY - 200;
         var img = $("#tooltip");
+        // 设置图片属性
         img.css("display", "block");
         img.css("position", "fixed");
+        // 设置位置
         img.css("left", left + "px");
         img.css("top", top + "px");
     }).mouseout(function () {
+        // 离开时移除
         $("#tooltip").remove();
     });
 

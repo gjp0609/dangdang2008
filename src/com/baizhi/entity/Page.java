@@ -16,7 +16,7 @@ public class Page implements Serializable {
     private Integer totalPages;
 
     public Page() {
-        this(1, 5);
+        this(1, 3);
     }
 
     public Page(Integer pageIndex, Integer pageSize, Integer totalRows, Integer totalPages) {

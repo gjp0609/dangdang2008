@@ -11,14 +11,14 @@
                  onmouseout="this.className = 'bg_old';">
                 <s:if test="#category.parentCategory==null">
                     <h3>
-                        [<a href='<s:url value="book_list.jsp"><s:param name="cateId" value="#category.id"/></s:url>'>
+                        [<a href='<s:url namespace="/product" action="bookList"><s:param name="product.category.id" value="#category.id"/></s:url>'>
                         <s:property value="#category.name"/></a>]
                     </h3>
                     <ul class="ul_left_list">
                         <!--2级分类开始-->
                         <s:iterator value="#category.categoryList" var="cate">
                             <li>
-                                <a href='<s:url value="book_list.jsp"><s:param name="cateId" value="#cate.id"/></s:url>'>
+                                <a href='<s:url namespace="/product" action="bookList"><s:param name="product.category.id" value="#cate.id"/></s:url>'>
                                     <s:property value="#cate.name"/></a>
                             </li>
                         </s:iterator>

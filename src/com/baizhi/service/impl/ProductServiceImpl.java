@@ -16,10 +16,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findProductByCdt(Product product, Page page, String orderName, Integer order) {
         List<Product> productList;
         ProductDao dao = MyBatisUtils.getMapper(ProductDao.class);
-        int totalRows = dao.selectTotalRows();
         if (orderName == null) order = null;
         if (page != null) {
-            page.setTotalRows(dao.selectTotalRows());
+            page.setTotalRows(dao.selectTotalRows(product));
             productList = dao.selectProductByCdt(product, page.getFirstRow(), page.getLastRow(), orderName, order);
         } else {
             productList = dao.selectProductByCdt(product, null, null, orderName, order);
@@ -30,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findRecommendProduct() {
         ProductDao dao = MyBatisUtils.getMapper(ProductDao.class);
-        int i = dao.selectTotalRows();
+        int i = dao.selectTotalRows(new Product());
         List<Integer> list = new ArrayList<>();
 
         Random random = new Random(new Date().getTime());

@@ -17,9 +17,9 @@
                 <div class=second_c_02_b1_2>
                     <h3>
                         <a href='<s:url namespace="/product" action="bookDetails">
-                            <s:param name="id" value="#book.id"/></s:url>' target='_blank'
-                           title='<s:property value="#book.title"/>'><s:property
-                                value="#book.title"/></a>
+                            <s:param name="id" value="#book.id"/></s:url>'
+                           target='_blank' title='<s:property value="#book.title"/>'>
+                            <s:property value="#book.title"/></a>
                     </h3>
                     <h4>
                         作者：<s:property value="#book.author"/>

@@ -18,9 +18,8 @@ public class ProductAction extends BaseAction {
     private Product product = new Product();
     // 查询书籍列表，在主页中通过调用 action 得到数据，再通过此属性传输到对应的 jsp 页面
     private List<Product> productList = new ArrayList<>();
-
-    private String type = ""; // orderName
-    private Integer order;
+    private String type = "publishTime"; // orderName
+    private Integer order = 1;
 
 
     public String findBooks() {
@@ -52,14 +51,14 @@ public class ProductAction extends BaseAction {
         ProductService service = new ProductServiceImpl();
         List<Product> list = service.findProductByCdt(p, null, null, null);
         if (list != null && list.size() == 1) product = list.get(0);
-        System.out.println(list + " " + product);
         return SUCCESS;
     }
 
     public String bookList() {
-        System.out.println(type + " " + order);
+        System.out.println("\nproduct->" + product + "\ntype->" + type + "\norder->" + order + "\n");
         ProductServiceImpl service = new ProductServiceImpl();
         productList = service.findProductByCdt(product, page, type, order);
+        System.out.println(productList);
         return SUCCESS;
     }
 

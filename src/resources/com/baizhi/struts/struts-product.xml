@@ -26,7 +26,7 @@
         </action>
 
         <action name="bookList" class="com.baizhi.action.ProductAction" method="bookList">
-            <result name="success" type="dispatcher">/main/list.jsp</result>
+            <result name="success" type="dispatcher">/main/book_list.jsp</result>
         </action>
     </package>
 </struts>

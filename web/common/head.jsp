@@ -21,7 +21,7 @@
     </div>
     <div class="head_head_list">
         <div class="head_head_list_left"><span class="head_logo">
-            <a href="<s:url value="main.jsp"/>" name="backtobook">
+            <a href="<s:url namespace="" value="main.jsp"/>" name="backtobook">
                 <img src="../images/booksaleimg/book_logo.gif"/></a></span>
         </div>
         <div class="head_head_list_right">

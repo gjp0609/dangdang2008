@@ -11,12 +11,12 @@
                         <div class="second_fenlei">
                             <s:if test='#parameters.cateId[0]==category.id'>
                                 <a style="color: red"
-                                   href="<s:url value="book_list.jsp"><s:param name="cateId" value="category.id"/></s:url>">
+                                   href="<s:url namespace="/product" action="bookList"><s:param name="product.category.id" value="category.id"/></s:url>">
                                     &middot; <s:property value="category.name"/>&nbsp;
                                     (<s:property value="category.count"/>)</a>
                             </s:if>
                             <s:else>
-                                <a href="<s:url value="book_list.jsp"><s:param name="cateId" value="category.id"/></s:url>">
+                                <a href="<s:url namespace="/product" action="bookList"><s:param name="product.category.id" value="category.id"/></s:url>">
                                     &middot; <s:property value="category.name"/>&nbsp;
                                     (<s:property value="category.count"/>)</a>
                             </s:else>
@@ -32,13 +32,13 @@
                             <div class="second_fenlei"> &middot;</div>
                             <div class="second_fenlei">
                                 <s:if test="#parameters.cateId[0]==#cate.id">
-                                    <a style="color: red" href="<s:url value="book_list.jsp">
-                                            <s:param name="cateId" value="#cate.id"/></s:url>">
+                                    <a style="color: red" href="<s:url namespace="/product" action="bookList">
+                                            <s:param name="product.category.id" value="#cate.id"/></s:url>">
                                         <s:property value="#cate.name"/>&nbsp;(<s:property value="#cate.count"/>)</a>
                                 </s:if>
                                 <s:else>
-                                    <a href="<s:url value="book_list.jsp">
-                                             <s:param name="cateId" value="#cate.id"/></s:url>">
+                                    <a href="<s:url namespace="/product" action="bookList">
+                                             <s:param name="product.category.id" value="#cate.id"/></s:url>">
                                         <s:property value="#cate.name"/>&nbsp;(<s:property value="#cate.count"/>)</a>
                                 </s:else>
                             </div>

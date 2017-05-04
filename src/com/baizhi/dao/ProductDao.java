@@ -18,5 +18,5 @@ public interface ProductDao {
 
     public List<Product> selectRecommendProduct(@Param("list") List<Integer> list);
 
-    public int selectTotalRows();
+    public int selectTotalRows(Product product);
 }
