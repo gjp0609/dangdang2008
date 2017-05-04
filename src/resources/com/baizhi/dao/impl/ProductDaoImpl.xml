@@ -88,7 +88,7 @@
         SELECT count(*)
         FROM T_DANGDANG_PRODUCT
         <where>
-            <if test="id!=null">P.ID = #{id}</if>
+            <if test="id!=null">ID = #{id}</if>
             <if test="category!=null">
                 <if test="category.id!=null">CATEGORY_ID = #{category.id}</if>
             </if>

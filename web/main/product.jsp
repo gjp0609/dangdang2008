@@ -1,64 +1,53 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="utf-8" %>
-<HTML>
-<HEAD>
-    <TITLE><s:property value="product.title"/> - 图书 - 当当网</TITLE>
-    <META http-equiv=Content-Type content="text/html; charset=utf-8">
-    <LINK href="<s:url value="../product_files/dangdang.css"/>" type=text/css rel=Stylesheet>
-    <LINK href="<s:url value="../product_files/book.css"/>" type=text/css rel=stylesheet>
+<html>
+<head>
+    <title><s:property value="product.title"/> - 图书 - 当当网</title>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <link href="<s:url value="../product_files/dangdang.css"/>" type=text/css rel=Stylesheet>
+    <link href="<s:url value="../product_files/book.css"/>" type=text/css rel=stylesheet>
     <script type="text/javascript" src="<s:url value="../js/jquery-1.7.2.min.js"/>"></script>
     <script type="text/javascript">
-        function addProduct(img, productId) {
-            $("#buy").css("display", "none");
-            $("#cartInfo_" + productId).html('<img align="bottom" src="../images/load.gif" width="14" height="14" style="display:inline" align="bottom"/>&nbsp;购买中...');
-            $.getJSON("../cart/addItem.action",
-                {id: productId, time: (new Date()).getTime()},
-                function (json) {
-                    if (json.count === 0) {
-                        //没有添加成功
-                        $("#buy").css("display", "block");
-                        $("#cartInfo_" + productId).html('<img align="bottom" src="../images/wrong.gif" width="14" height="14" style="display:inline" align="bottom"/>&nbsp;<span style="color:red">购买失败</span>');
-                    }
-                    else {
-                        //添加成功
-                        $("#cartInfo_" + productId).html('<img align="bottom" src="../images/right.gif" width="14" height="14" style="display:inline" align="bottom"/>&nbsp;购买成功');
-                        var timeId = setTimeout(function () {
-                            clearTimeout(timeId);
-                            $("#buy").css("display", "block");
-                            $("#cartInfo_" + productId).html("");
-                        }, 2000);
-                    }
-                }
-            );
+        $(function () {
+            smap = "<s:property value="#session.books"/>";
+        });
+        function addProduct(productId) {
+            $.ajax("<s:url namespace="/order" action="addToCart"/>?product.id=" + productId);
+            $(function () {
+                var map = "<s:property value="#session.books"/>";
+                alert(smap)
+                alert(map)
+            })
+
         }
     </script>
-</HEAD>
-<BODY>
+</head>
+<body>
 
-<%--<DIV id="tag_box" style="DISPLAY: none; Z-INDEX: 10; POSITION: absolute"></DIV>--%>
-<%--<DIV id="div_shield"></DIV>--%>
-<DIV id="main">
-    <DIV class="mainsearch"></DIV>
-    <DIV class="wrap"><!--left start-->
+<%--<div id="tag_box" style="DISPLAY: none; Z-INDEX: 10; POSITION: absolute"></div>--%>
+<%--<div id="div_shield"></div>--%>
+<div id="main">
+    <div class="mainsearch"></div>
+    <div class="wrap"><!--left start-->
         <!--left end-->
-        <DIV class="right">
-            <DIV class="right_wai">
-                <DIV class="shuming">
-                    <DIV class="shuming_left"><SPAN class="black000"><A
-                            name="top_bk"></A><s:property value="product.title"/></SPAN></DIV>
-                    <DIV class="book_case"><SPAN class="seriesname">丛书名：
+        <div class="right">
+            <div class="right_wai">
+                <div class="shuming">
+                    <div class="shuming_left"><span class="black000"><a
+                            name="top_bk"></a><s:property value="product.title"/></span></div>
+                    <div class="book_case"><span class="seriesname">丛书名：
                         <s:property value="product.series"/>
-                    </SPAN></DIV>
-                    <DIV class="empty_box"></DIV>
-                </DIV>
-                <DIV class="book_left">
-                    <DIV class="book_pic">
-                        <IMG class="pic" id="img_show_prd" src="../<s:property value="product.imgSrc"/>" width="140px">
-                    </DIV>
-                    <INPUT id="hid_largepictureurl" type="hidden"/></DIV>
-                <DIV class="book_right">
-                    <DIV id="author_">作 　 者：<s:property value="product.author"/></DIV>
-                    <DIV id="publisher_">出 版 社： <s:property value="product.publisher"/></DIV>
+                    </span></div>
+                    <div class="empty_box"></div>
+                </div>
+                <div class="book_left">
+                    <div class="book_pic">
+                        <img class="pic" id="img_show_prd" src="../<s:property value="product.imgSrc"/>" width="140px">
+                    </div>
+                    <input id="hid_largepictureurl" type="hidden"/></div>
+                <div class="book_right">
+                    <div id="author_">作 　 者：<s:property value="product.author"/></div>
+                    <div id="publisher_">出 版 社： <s:property value="product.publisher"/></div>
                     <UL>
                         <LI>出版时间： <s:date name="product.publishTime" format="yyyy-MM-dd"/></LI>
                         <LI>字　　数： <s:property value="product.wordCount"/>万</LI>
@@ -68,78 +57,75 @@
                         <LI>开　　本： <s:property value="product.bookSize"/>开</LI>
                         <LI>印　　次： <s:property value="product.printEdtion"/></LI>
                         <LI>纸　　张： <s:property value="product.paper"/></LI>
-                        <LI>I S B N：<s:property value="product.isbn"/></LI>
+                        <LI>I S B N： <s:property value="product.isbn"/></LI>
                         <LI>包　　装： <s:property value="product.pack"/></LI>
                     </UL>
-                    <DIV id="__categroy_bk">所属分类：图书 >>
+                    <div id="__categroy_bk">所属分类：图书 >>
                         <s:action namespace="/category" name="findParent" executeResult="true">
                             <s:param name="id" value="product.category.id"/>
-                        </s:action></DIV>
-                    <DIV class="jiage"><SPAN class="gray87">定价：<SPAN class="del" id="originalPriceTag">
-                        ￥<s:property value="product.realPrice"/></SPAN></SPAN>
-                        <SPAN class="redc30">当当价：￥<B><s:property value="product.price"/></B></SPAN>
+                        </s:action></div>
+                    <div class="jiage"><span class="gray87">定价：<span class="del" id="originalPriceTag">
+                        ￥<s:property value="product.realPrice"/></span></span>
+                        <span class="redc30">当当价：￥<B><s:property value="product.price"/></B></span>
                         节省：￥<s:property value="product.realPrice-product.price"/>
-                        <DIV class="pd_buy_num">
-                            <DIV class="clear"></DIV>
-                        </DIV>
-                        <DIV class="goumai">
-                            <A title="购买" onclick="addProduct(this,<s:property value="product.id"/>)"
+                        <div class="pd_buy_num">
+                            <div class="clear"></div>
+                        </div>
+                        <div class="goumai">
+                            <a title="购买" onclick="addProduct(<s:property value="product.id"/>)"
                                name="purchase_book">
-                                <IMG id="buy" src="../product_files/booksale.gif"><span
-                                    id="cartInfo_<s:property value="product.id"/>"></span></A>
-                            <!--  <A id="favor" title=收藏 href="#" name=wishlist_book>
-                            <IMG id="imgfavor" src="../product_files/bookz_save.gif"></A>
-                            -->
-                        </DIV>
-                    </DIV>
-                </DIV>
-                <DIV id="dvTPUrls"></DIV>
-                <DIV id="__zhinengbiaozhu_bk">
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                                <img id="buy" src="../product_files/booksale.gif"><span
+                                    id="cartInfo_<s:property value="product.id"/>"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="dvTPUrls"></div>
+                <div id="__zhinengbiaozhu_bk">
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         编辑推荐</H2>
-                    <DIV class="zhengwen">
+                    <div class="zhengwen">
                         <s:property value="product.recommend"/>
-                    </DIV>
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                    </div>
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         内容简介</H2>
-                    <DIV class="zhengwen"><s:property value="product.details"/></DIV>
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                    <div class="zhengwen"><s:property value="product.details"/></div>
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         作者简介</H2>
-                    <DIV class="zhengwen"><s:property value="product.author"/>
-                        <s:property value="product.authorDetails"/></DIV>
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                    <div class="zhengwen"><s:property value="product.author"/>
+                        <s:property value="product.authorDetails"/></div>
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         目录</H2>
-                    <DIV class="zhengwen"><s:property value="product.catalogue"/></DIV>
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                    <div class="zhengwen"><s:property value="product.catalogue"/></div>
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         媒体评论</H2>
-                    <DIV class="zhengwen"><s:property value="product.commend"/></DIV>
-                    <DIV class="dashed"></DIV>
-                    <H2 class="black14"><IMG src="../product_files/bg_point1.gif" align="absMiddle">
+                    <div class="zhengwen"><s:property value="product.commend"/></div>
+                    <div class="dashed"></div>
+                    <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
                         书摘插图</H2>
-                    <DIV class="zhengwen">
+                    <div class="zhengwen">
                         <s:property value="product.digest"/>
-                    </DIV>
-                </DIV>
-                <A name="review_point"></A>
-            </DIV>
-        </DIV>
-        <DIV id="tag_box" style="DISPLAY: none; Z-INDEX: 2; POSITION: absolute;">
-        </DIV>
-        <DIV id="tag_box_pay" style=" DISPLAY: none; Z-INDEX: 2; POSITION: absolute; ">
-        </DIV>
-        <DIV id="div_shield"></DIV><!--页尾 开始 -->
-        <DIV class="public_footer_add_s"></DIV><!--09.3.10new-->
+                    </div>
+                </div>
+                <a name="review_point"></a>
+            </div>
+        </div>
+        <div id="tag_box" style="display: none; z-index: 2; position: absolute;">
+        </div>
+        <div id="tag_box_pay" style=" DISPLAY: none; Z-INDEX: 2; POSITION: absolute; ">
+        </div>
+        <div id="div_shield"></div><!--页尾 开始 -->
+        <div class="public_footer_add_s"></div><!--09.3.10new-->
         <!--页尾 end -->
         <!--页尾开始 -->
         <%@include file="../common/foot.jsp" %>
         <!--页尾结束 -->
-    </DIV>
-</DIV>
+    </div>
+</div>
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 <script>
     $(".pic").mouseover(function () {
@@ -163,5 +149,5 @@
 
 </script>
 
-</BODY>
-</HTML>
+</body>
+</html>

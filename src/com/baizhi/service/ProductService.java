@@ -18,6 +18,10 @@ public interface ProductService {
      */
     public List<Product> findProductByCdt(Product product, Page page, String orderName, Integer order);
 
+    /**
+     * 查询推荐图书
+     * @return 图书列表
+     */
     public List<Product> findRecommendProduct();
 
 

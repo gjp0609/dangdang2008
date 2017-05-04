@@ -9,6 +9,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
       <facet type="Struts2" name="Struts 2">
         <configuration>
@@ -19,6 +20,7 @@
             <file>file://$MODULE_DIR$/src/resources/com/baizhi/struts/struts-common.xml</file>
             <file>file://$MODULE_DIR$/src/resources/com/baizhi/struts/struts-product.xml</file>
             <file>file://$MODULE_DIR$/src/resources/com/baizhi/struts/struts-category.xml</file>
+            <file>file://$MODULE_DIR$/src/resources/com/baizhi/struts/struts-order.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
@@ -46,5 +48,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="json.org" level="project" />
   </component>
 </module>

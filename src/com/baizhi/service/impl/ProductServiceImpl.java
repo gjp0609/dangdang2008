@@ -9,9 +9,11 @@ import com.baizhi.utils.MyBatisUtils;
 import java.util.*;
 
 /**
+ * 产品服务实现类
  * Created by gjp06 on 17.5.2.
  */
 public class ProductServiceImpl implements ProductService {
+
     @Override
     public List<Product> findProductByCdt(Product product, Page page, String orderName, Integer order) {
         List<Product> productList;

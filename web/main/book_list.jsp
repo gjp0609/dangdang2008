@@ -120,7 +120,7 @@
                 <span class="list_r_list_book"><a name="link_prd_img"
                                                   href='<s:url namespace="/product" action="bookDetails">
                             <s:param name="id" value="#book.id"/></s:url>'>
-                    <img src="../<s:property value="#book.imgSrc"/>"/> </a> </span>
+                    <img class="pic" src="../<s:property value="#book.imgSrc"/>"/> </a> </span>
                     <h2>
                         <a name="link_prd_name" href='<s:url namespace="/product" action="bookDetails">
                             <s:param name="id" value="#book.id"/></s:url>'>
@@ -150,7 +150,7 @@
                         节省：￥<s:property value="#book.realPrice-#book.price"/>
                     </h6>
                     <span class="list_r_list_button">
-                    <a href="#"><img src='../images/buttom_goumai.gif'/> </a>
+                    <a href="#"><img src='<s:url value="../images/buttom_goumai.gif"/>'/> </a>
                     <%--<span id="cartinfo"></span>--%>
                 </span>
                 </div>
@@ -176,7 +176,6 @@
 
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 <script>
-
     var type = '<s:property value="type"/>';
     var order = '<s:property value="order"/>';
     $(function () {
@@ -201,6 +200,34 @@
         order = $("#order").find("option:selected").val();
         window.location.href = '<s:url namespace="/product" action="bookList"/>?order='
             + order + '&type=' + type + '&product.category.id=' + id;
+    });
+
+</script>
+
+<script>
+    $(".pic").mouseover(function () {
+        var src = this.src;
+        // 新建 div
+        var tooltip = "<div id='tooltip'><img width='300px' src=''/><\/div>";
+        // 把它追加到文档中
+        $("body").append(tooltip);
+        $("#tooltip").find("img").attr("src", src);
+    }).mousemove(function () {// 鼠标移动
+        // 新建事件
+        var event = window.event;
+        // 获取鼠标位置
+        var left = event.clientX + 10;
+        var top = event.clientY - 200;
+        var img = $("#tooltip");
+        // 设置图片属性
+        img.css("display", "block");
+        img.css("position", "fixed");
+        // 设置位置
+        img.css("left", left + "px");
+        img.css("top", top + "px");
+    }).mouseout(function () {
+        // 离开时移除
+        $("#tooltip").remove();
     });
 
 </script>

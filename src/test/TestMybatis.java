@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Created by gjp06 on 17.5.1.
  */
-public class testMybatis {
+public class TestMybatis {
 
     @Test
     void testget(){
