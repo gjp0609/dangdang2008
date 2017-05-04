@@ -6,12 +6,15 @@ import com.baizhi.service.impl.CategoryServiceImpl;
 import java.util.List;
 
 /**
- * 商品分类
+ * 商品分类 action
  * Created by gjp06 on 17.5.2.
  */
 public class CategoryAction extends BaseAction {
+    // 分类id
     private Integer id;
+    // 分类集合，用来传输数据
     private List<Category> categoryList;
+    // 父分类对象，用于 findChildren()
     private Category category;
 
     /**
@@ -38,21 +41,26 @@ public class CategoryAction extends BaseAction {
 
     /**
      * 查找传入分类 id 的子分类
+     * 用来查询一个父分类和它的所有子分类
+     * 如果传入的是子类 id 则再次查询得到父分类对象
      *
-     * @return 跳转至 cate_list.jsp
+     * @return 查询完毕跳转至 cate_list.jsp
      */
     public String findChildren() {
-        Category cate = new Category();
         CategoryServiceImpl service = new CategoryServiceImpl();
+        // 定义分类对象作为查询条件
+        Category cate = new Category();
         cate.setId(id);
         categoryList = service.findCategory(cate);
+        // 非空判断
         if (categoryList != null && categoryList.size() == 1) {
+            // 获得分类列表中第一个（唯一的）值
             category = categoryList.get(0);
-            // 不是父分类
+            // 如果此分类的父类id 为 null，则此分类不是父分类
             if (category.getParentCategory() != null)
+                // 根据分类父id 查询父分类
                 category = service.findCategory(category.getParentCategory()).get(0);
         }
-        System.err.println("分类："+id + "   " + category);
         return SUCCESS;
     }
 

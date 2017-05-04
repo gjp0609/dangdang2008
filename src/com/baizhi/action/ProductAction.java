@@ -9,16 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 商品相关
  * Created by gjp06 on 17.5.2.
  */
 public class ProductAction extends BaseAction {
+    // 分页
     private Page page = new Page();
     private Integer id = 0;
     // 单个书籍
     private Product product = new Product();
     // 查询书籍列表，在主页中通过调用 action 得到数据，再通过此属性传输到对应的 jsp 页面
     private List<Product> productList = new ArrayList<>();
+    // 结果根据此属性排序
     private String type = "publishTime"; // orderName
+    // 决定排序顺序 1 代表升序（默认），-1 代表降序
     private Integer order = 1;
 
 
@@ -26,6 +30,11 @@ public class ProductAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * 获取推荐图书
+     *
+     * @return 跳转至 recommend.jsp
+     */
     public String recommendBooks() {
         productList = new ProductServiceImpl().findRecommendProduct();
         return SUCCESS;

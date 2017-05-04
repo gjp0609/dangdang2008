@@ -7,4 +7,4 @@
     &gt;&gt;
     <a href="<s:url namespace="/product" action="bookList"><s:param name="product.category.id" value="#cate.id"/></s:url>">
         <s:property value="#cate.name"/></a>
-</s:iterator>                 4
+</s:iterator>

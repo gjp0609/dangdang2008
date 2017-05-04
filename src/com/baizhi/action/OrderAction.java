@@ -3,27 +3,27 @@ package com.baizhi.action;
 import com.baizhi.entity.Page;
 import com.baizhi.entity.Product;
 import com.baizhi.service.impl.ProductServiceImpl;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * 处理订单
  * Created by gjp06 on 17.5.4.
  */
 public class OrderAction extends com.baizhi.action.BaseAction {
-    private JSONObject jsonObject = new JSONObject();
     private Product product = new Product();
     private Integer result = 0;
 
     /**
      * 加入购物车
+     * 点击加入购物车时调用此 action
+     * 通过传入的 id 查询商品，并存入 session 中的购物车 Map 集合中
      *
      * @return null
      */
     public String addToCart() {
-        System.out.println(product + "\n");
         // 判断 id 是否传入
         if (product.getId() != null) {
             Map<Integer, Product> bookList = new HashMap<>();
@@ -62,11 +62,4 @@ public class OrderAction extends com.baizhi.action.BaseAction {
         this.result = result;
     }
 
-    public JSONObject getJsonObject() {
-        return jsonObject;
-    }
-
-    public void setJsonObject(JSONObject jsonObject) {
-        this.jsonObject = jsonObject;
-    }
 }

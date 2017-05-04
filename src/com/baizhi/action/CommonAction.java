@@ -12,11 +12,12 @@ import java.awt.image.BufferedImage;
  * Created by gjp06 on 17.5.1.
  */
 public class CommonAction extends BaseAction {
-
+    // TODO 貌似没用？
     private User user = new User();
 
     /**
      * 生成验证码图片并将验证码存入 session
+     *
      * @return null
      * @throws Exception IOException
      */

@@ -27,7 +27,7 @@
       </facet>
     </facet>
   </component>
-  <component name="NewModuleRootManager">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/web/WEB-INF/classes" />
     <output-test url="file://$MODULE_DIR$/web/WEB-INF/classes" />
     <exclude-output />
@@ -48,6 +48,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="json.org" level="project" />
   </component>
 </module>
