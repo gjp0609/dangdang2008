@@ -60,10 +60,11 @@
                             <a href="#"><s:property value="#item.value.product.title"/></a>
                         </td>
                         <td class="buy_td_5">
-                            <span class="c_gray">￥<s:property value="#item.value.product.realPrice"/></span>
+                            &nbsp;￥<span class="item_real_price c_gray"><s:property
+                                value="#item.value.product.realPrice"/></span>
                         </td>
                         <td class="buy_td_4">
-                            &nbsp; <span>￥<s:property value="#item.value.product.price"/></span>
+                            &nbsp; ￥<span class="item_price"><s:property value="#item.value.product.price"/></span>
                         </td>
                         <td class="buy_td_1">
                                 <%-- 减 --%>
@@ -120,29 +121,31 @@
     </div>
     <table class=tabl_del id=del_table>
         <tbody>
+        <s:iterator value="#session.items" var="item" status="st">
+            <s:if test='#item.value.status.equals("N")'>
+                <tr>
+                    <td width="58" class=buy_td_6>
+                        &nbsp;
+                    </td>
+                    <td width="365" class=t2>
+                        <a href="#"><s:property value="#item.value.product.title"/></a>
+                    </td>
+                    <td width="106" class=buy_td_5>
+                        ￥<s:property value="#item.value.product.realPrice"/>
+                    </td>
+                    <td width="134" class=buy_td_4>
+                        <span>￥<s:property value="#item.value.product.price"/></span>
+                    </td>
+                    <td width="56" class=buy_td_1>
+                        <a href="<s:url namespace='/cart' action='deleteFromCart'/>?product.id=<s:property value="#item.key"/>">恢复</a>
+                    </td>
+                    <td width="16" class=objhide>
+                        &nbsp;
+                    </td>
+                </tr>
+            </s:if>
+        </s:iterator>
 
-        <s:else>
-            <tr>
-                <td width="58" class=buy_td_6>
-                    &nbsp;
-                </td>
-                <td width="365" class=t2>
-                    <a href="#"><s:property value="#item.value.product.title"/></a>
-                </td>
-                <td width="106" class=buy_td_5>
-                    ￥<s:property value="#item.value.product.realPrice"/>
-                </td>
-                <td width="134" class=buy_td_4>
-                    <span>￥<s:property value="#item.value.product.price"/></span>
-                </td>
-                <td width="56" class=buy_td_1>
-                    <a href="<s:url namespace='/cart' action='deleteFromCart'/>?product.id=<s:property value="#item.key"/>">恢复</a>
-                </td>
-                <td width="16" class=objhide>
-                    &nbsp;
-                </td>
-            </tr>
-        </s:else>
 
         <tr class=td_add_bord>
             <td colspan=8>
@@ -174,7 +177,7 @@
 <script>
     $(function () {
         var items = "<s:property value="#session.items"/>";
-        if (items === "") {
+        if (items === "" || items === "{}") {
             $("#div_choice").hide();
             $("#divCartItemsRemoved").hide();
             $("#div_no_choice").show();
@@ -182,25 +185,25 @@
     });
 
     $(function () {
-//        $(".del_num").
+        var realTotal = 0;
+        var total = 0;
+
+        // 所有数量
+        var countInput = $(".del_num");
+        var realPriceSpan = $(".item_real_price");
+        var priceSpan = $(".item_price");
+        // 遍历每个购物项，计算总价格
+        countInput.each(function (i) {
+            var count = $(this).val();
+            var realPrice = realPriceSpan.get(i).innerHTML;
+            var price = priceSpan.get(i).innerHTML;
+            realTotal += parseFloat(count) * parseFloat(realPrice);
+            total += parseFloat(count) * parseFloat(price);
+        });
+        $("#total_account").text(total);
+        $("#total_economy").html(realTotal - total);
+
     });
-
-
-    //    function subtract(sub) {
-    //        var count = $(sub).next();
-    //        var count = parent.find(":input[class='del_num']");
-    //        if (count.val() !== "1") {
-    //            count.val(parseInt(count.val()) - 1);
-    //        }
-    //    }
-    //    function add(sub) {
-    //        var count = $(sub).prev();
-    //        var ct = $(sub).parent().prev().find("span").text();
-    //        var count = parent.find(":input[class='del_num']");
-    //        if (count.val() !== "1") {
-    //            count.val(parseInt(count.val()) + 1);
-    //        }
-    //    }
 
 </script>
 </body>
