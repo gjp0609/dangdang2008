@@ -9,5 +9,5 @@
     <include file="/resources/com/baizhi/struts/struts-common.xml"/>
     <include file="resources/com/baizhi/struts/struts-product.xml"/>
     <include file="resources/com/baizhi/struts/struts-category.xml"/>
-    <include file="resources/com/baizhi/struts/struts-order.xml"/>
+    <include file="resources/com/baizhi/struts/struts-cart.xml"/>
 </struts>

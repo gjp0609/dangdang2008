@@ -1,6 +1,7 @@
 package com.baizhi.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by gjp06 on 17.5.4.
@@ -12,6 +13,7 @@ public class Order {
     private Date createTime;
     private String status;
     private Address address;
+    private List<OrderItem> items;
 
     @Override
     public String toString() {
@@ -71,5 +73,13 @@ public class Order {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
     }
 }

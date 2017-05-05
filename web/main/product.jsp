@@ -8,22 +8,13 @@
     <link href="<s:url value="../product_files/book.css"/>" type=text/css rel=stylesheet>
     <script type="text/javascript" src="<s:url value="../js/jquery-1.7.2.min.js"/>"></script>
     <script type="text/javascript">
-        $(function () {
-            smap = "<s:property value="#session.books"/>";
-        });
         function addProduct(productId) {
-            $.ajax("<s:url namespace="/order" action="addToCart"/>?product.id=" + productId);
-            $(function () {
-                var map = "<s:property value="#session.books"/>";
-                alert(smap)
-                alert(map)
-            })
-
+            // todo 加入购物车提示
+            $.ajax("<s:url namespace="/cart" action="updateCart"/>?product.id=" + productId + "&count=1");
         }
     </script>
 </head>
 <body>
-
 <%--<div id="tag_box" style="DISPLAY: none; Z-INDEX: 10; POSITION: absolute"></div>--%>
 <%--<div id="div_shield"></div>--%>
 <div id="main">
