@@ -27,7 +27,6 @@ public class UserAction extends BaseAction {
      */
     public String login() {
         try {
-            System.err.println("login123");
             UserService service = new UserServiceImpl();
             User newUser = service.findUser(user.getEmail());
             if (newUser == null) throw new RuntimeException("未找到该用户");
@@ -36,7 +35,8 @@ public class UserAction extends BaseAction {
             if (newUser.getStatus() == null || !newUser.getStatus().equalsIgnoreCase("Y"))
                 throw new RuntimeException("该用户尚未激活");
             setSessionValue("user", newUser);
-            System.err.println("login");
+            Object loginStatus = getSessionValue("loginStatus");
+            if (loginStatus!=null) return "redirect";
         } catch (Exception e) {
             msg = e.getMessage();
             e.printStackTrace();

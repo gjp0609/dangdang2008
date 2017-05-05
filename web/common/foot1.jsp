@@ -8,10 +8,10 @@
                 Copyright (C) 当当网 2004-2008, All Rights Reserved
             </div>
             <div class="validate">
-                <a href="#http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098"
-                   target="_blank"> <img src="<s:url value="../css/public_footer.css"/>"/> </a>
+                <a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098"
+                   target="_blank"> <img src="<s:url value='/images/bottom/validate.gif'/>"/> </a>
                 <p>
-                    <a href="#" target="_blank">京ICP证041189号</a>
+                    <a href="" target="_blank">京ICP证041189号</a>
                 </p>
             </div>
         </div>
