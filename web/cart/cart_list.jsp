@@ -185,15 +185,20 @@
     });
 
     $(function () {
+        // 总原价
         var realTotal = 0;
+        // 总实际价格
         var total = 0;
 
-        // 所有数量
+        // 根据类名取得所有显示产品数量的标签
         var countInput = $(".del_num");
+        // 显示原价的标签
         var realPriceSpan = $(".item_real_price");
+        // 显示实际价格的标签
         var priceSpan = $(".item_price");
         // 遍历每个购物项，计算总价格
         countInput.each(function (i) {
+            //
             var count = $(this).val();
             var realPrice = realPriceSpan.get(i).innerHTML;
             var price = priceSpan.get(i).innerHTML;
