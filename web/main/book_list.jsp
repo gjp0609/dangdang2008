@@ -11,6 +11,8 @@
             width: 500px;
         }
     </style>
+
+
 </head>
 <body>
 &nbsp;
@@ -150,7 +152,8 @@
                         节省：￥<s:property value="#book.realPrice-#book.price"/>
                     </h6>
                     <span class="list_r_list_button">
-                    <a href="#"><img src='<s:url value="../images/buttom_goumai.gif"/>'/> </a>
+                    <a href="javascript:void(0)" onclick="addProduct(<s:property value="#book.id"/>)"><img
+                            src='<s:url value="../images/buttom_goumai.gif"/>'/> </a>
                     <%--<span id="cartinfo"></span>--%>
                 </span>
                 </div>
@@ -229,6 +232,11 @@
         // 离开时移除
         $("#tooltip").remove();
     });
+
+    function addProduct(productId) {
+        $.ajax("<s:url namespace="/cart" action="updateCart"/>?product.id=" + productId + "&count=1");
+        alert("已加入购物车");
+    }
 
 </script>
 

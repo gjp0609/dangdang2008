@@ -46,6 +46,7 @@ public class CartAction extends BaseAction {
      * @return null
      */
     public String updateCart() {
+        System.out.println(product);
         if (product.getId() == null || count == null) return null;
         Map<Integer, CartItem> items = new HashMap<>();
         CartItem item = new CartItem();
@@ -54,7 +55,7 @@ public class CartAction extends BaseAction {
                 new Page(), null, null);
         if (productList == null || productList.size() < 1) return null;
         Product p = productList.get(0);
-        System.out.println(p.getId() + " " + p.getTitle() + " " + count);
+//        System.out.println(p.getId() + " " + p.getTitle() + " " + count);
         // 从 session 中取出购物车（订单项集合）
         Object o = getSessionValue("items");
         // 若购物车不为 null 则取出购物车，购物车为 null 则存入新的购物车
@@ -81,10 +82,10 @@ public class CartAction extends BaseAction {
         items.put(p.getId(), item);
         // 把购物车对象存入 session
         setSessionValue("items", items);
-        for (Map.Entry<Integer, CartItem> ca : items.entrySet()) {
-            System.out.println("     -->" + ca.getValue().getProduct().getTitle()
-                    + " " + ca.getValue().getCount());
-        }
+//        for (Map.Entry<Integer, CartItem> ca : items.entrySet()) {
+//            System.out.println("     -->" + ca.getValue().getProduct().getTitle()
+//                    + " " + ca.getValue().getCount());
+//        }
         return SUCCESS;
     }
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +24,7 @@
             订单已经生成
         </h5>
         <h6>
-            您刚刚生成的订单号是：10001，金额总计200
+            您刚刚生成的订单号是：<s:property value="order.id"/>，金额总计<s:property value="order.totalPrice"/>
         </h6>
 
         <ul>

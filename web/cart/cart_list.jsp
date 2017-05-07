@@ -211,6 +211,8 @@
     });
 
 </script>
+
+<s:debug/>
 </body>
 </html>
 

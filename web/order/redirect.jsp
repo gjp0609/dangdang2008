@@ -11,7 +11,7 @@
 <%@include file="../common/head1.jsp" %>
 
 重定向
-<a href="<s:url namespace="/order" action=""/>">click</a>
+<a href="<s:url namespace="/order" action="toAddress"/>?addressId=0">click</a>
 
 <%@include file="../common/foot1.jsp" %>
 </body>

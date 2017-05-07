@@ -6,6 +6,10 @@ package com.baizhi.entity;
 public class Address {
     private Integer id;
     private String name;
+    private String address;
+    private String code;
+    private String tphone;
+    private String mphone;
     private User user;
 
 
@@ -14,6 +18,10 @@ public class Address {
         return "Address{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", code='" + code + '\'' +
+                ", tphone='" + tphone + '\'' +
+                ", mphone='" + mphone + '\'' +
                 ", user=" + user +
                 '}';
     }
@@ -40,5 +48,37 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getTphone() {
+        return tphone;
+    }
+
+    public void setTphone(String tphone) {
+        this.tphone = tphone;
+    }
+
+    public String getMphone() {
+        return mphone;
+    }
+
+    public void setMphone(String mphone) {
+        this.mphone = mphone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

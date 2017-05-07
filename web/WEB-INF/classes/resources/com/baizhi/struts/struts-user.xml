@@ -19,5 +19,8 @@
             <result name="success" type="dispatcher">/user/register_ok.jsp</result>
             <result name="verify" type="chain">register</result>
         </action>
+        <action name="logout" class="com.baizhi.action.UserAction" method="logout">
+            <result name="success" type="redirect">/main/main.jsp</result>
+        </action>
     </package>
 </struts>

@@ -7,11 +7,15 @@
 <struts>
     <package name="order" namespace="/order" extends="struts-default">
         <action name="checkLogin" class="com.baizhi.action.OrderAction" method="checkLogin">
-            <result name="success" type="dispatcher">toAddress.action</result>
+            <result name="success" type="chain">toAddress</result>
             <result name="login" type="redirect">/user/login_form.jsp</result>
         </action>
         <action name="toAddress" class="com.baizhi.action.OrderAction" method="toAddress">
-            <result name="success" type="redirect">/order/address_form.jsp</result>
+            <result name="success" type="dispatcher">/order/address_form.jsp</result>
+            <result name="login" type="redirect">/user/login_form.jsp</result>
+        </action>
+        <action name="checkAddress" class="com.baizhi.action.OrderAction" method="checkAddress">
+            <result name="success" type="dispatcher">/order/order_ok.jsp</result>
         </action>
     </package>
 </struts>

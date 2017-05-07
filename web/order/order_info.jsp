@@ -1,6 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html;charset=utf-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>生成订单 - 当当网</title>
@@ -73,7 +72,7 @@
         <a href="../cart/cart_list.jsp"><input id="btnClientRegisterCancel" class="button_1" name="submit"
                                                type="submit" value="取消"/></a>
 
-        <a href="<s:url namespace="/order" action="checkLogin"/>">
+        <a href="<s:url namespace="/order" action="checkLogin"/>?addressId=0">
             <input id="btnClientRegister" class="button_1" name="submit" type="submit" value="下一步"/></a>
 
     </div>

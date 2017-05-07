@@ -1,8 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.OrderDao">
-    <select id="selectOrder" resultType="com.baizhi.entity.Order">
-        --         SELECT
-        --         FROM T_DANGDANG_ORDER O
+    <insert id="insertAddress">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            SELECT T_DANGDANG_ADDRESS_SEQ.nextval FROM dual
+        </selectKey>
+        INSERT INTO T_DANGDANG_ADDRESS VALUES (#{id}, #{name},#{address},#{code},#{tphone},#{mphone},#{user.id})
+    </insert>
+
+    <insert id="insertOrderItem">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            SELECT T_DANGDANG_ORDER_ITEM_SEQ.nextval FROM dual
+        </selectKey>
+        INSERT INTO T_DANGDANG_ORDER_ITEM VALUES
+        (#{id},#{product.id},#{count},#{order.id})
+    </insert>
+
+    <insert id="insertOrder">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            SELECT T_DANGDANG_ORDER_SEQ.nextval FROM dual
+        </selectKey>
+        INSERT INTO T_DANGDANG_ORDER(ID, CODE, CREATE_TIME, STATUS, ADDRESS_ID, USER_ID) VALUES
+        (#{id},#{code},sysdate,#{status},#{address.id},#{address.user.id})
+    </insert>
+    <update id="updateOrder">
+        UPDATE T_DANGDANG_ORDER
+        <set>
+            <if test="totalPrice!=null">TOTAL_PRICE = #{totalPrice}</if>
+        </set>
+    </update>
+
+    <resultMap id="AddressRM" type="Address" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="user" javaType="User">
+            <id property="id" column="userId"/>
+        </association>
+    </resultMap>
+    <sql id="selectAddress">
+        SELECT
+            ID,
+            NAME,
+            ADDRESS,
+            CODE,
+            TPHONE,
+            MPHONE,
+            USER_ID userId
+        FROM T_DANGDANG_ADDRESS
+    </sql>
+    <select id="selectAddressByUserId" resultMap="AddressRM">
+        <include refid="selectAddress"/>
+        <where>
+            <if test="id!=null">USER_ID = #{id}</if>
+        </where>
+    </select>
+    <select id="selectAddressById" resultType="com.baizhi.entity.Address">
+        <include refid="selectAddress"/>
+        <where>
+            <if test="id!=null">ID=#{id}</if>
+        </where>
     </select>
 </mapper>

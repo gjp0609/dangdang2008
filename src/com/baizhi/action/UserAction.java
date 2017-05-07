@@ -4,6 +4,7 @@ import com.baizhi.entity.User;
 import com.baizhi.service.UserService;
 import com.baizhi.service.impl.UserServiceImpl;
 import com.baizhi.utils.SecurityUtils;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class UserAction extends BaseAction {
                 throw new RuntimeException("该用户尚未激活");
             setSessionValue("user", newUser);
             Object loginStatus = getSessionValue("loginStatus");
-            if (loginStatus!=null) return "redirect";
+            if (loginStatus != null) return "redirect";
         } catch (Exception e) {
             msg = e.getMessage();
             e.printStackTrace();
@@ -96,6 +97,10 @@ public class UserAction extends BaseAction {
         return SUCCESS;
     }
 
+    public String logout() {
+        ServletActionContext.getRequest().getSession().removeAttribute("user");
+        return SUCCESS;
+    }
 
     public User getUser() {
         return user;

@@ -13,6 +13,8 @@
         <typeAlias type="com.baizhi.entity.User" alias="User"/>
         <typeAlias type="com.baizhi.entity.Product" alias="Product"/>
         <typeAlias type="com.baizhi.entity.Category" alias="Category"/>
+        <typeAlias type="com.baizhi.entity.Order" alias="Order"/>
+        <typeAlias type="com.baizhi.entity.Address" alias="Address"/>
     </typeAliases>
 
     <environments default="oracle">
@@ -31,5 +33,6 @@
         <mapper resource="resources/com/baizhi/dao/impl/UserDaoImpl.xml"/>
         <mapper resource="resources/com/baizhi/dao/impl/ProductDaoImpl.xml"/>
         <mapper resource="resources/com/baizhi/dao/impl/CategoryDaoImpl.xml"/>
+        <mapper resource="resources/com/baizhi/dao/impl/OrderDaoImpl.xml"/>
     </mappers>
 </configuration>

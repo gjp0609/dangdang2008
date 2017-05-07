@@ -13,7 +13,8 @@
             </div>
         </div>
         <span class="head_toutext" id="logininfo"><b>您好，<s:property value="#session.user.nickname"/>欢迎光临当当网</b>
-            <s:if test="#session.user!=null"> [&nbsp;<a href="" class="b">登出</a>&nbsp;] </s:if>
+            <s:if test="#session.user!=null"> [&nbsp;<a href="<s:url
+                    namespace="/user" action="logout"/>" class="b">登出</a>&nbsp;] </s:if>
             <s:else>
                 [&nbsp;<a href="../user/login_form.jsp" class="b">登录</a>
                 |<a href="../user/register_form.jsp" class="b">注册</a>&nbsp;]
