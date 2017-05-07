@@ -34,7 +34,6 @@ public class OrderAction extends BaseAction {
         Object o = getSessionValue("user");
         User u = (User) o;
         if (u == null) return LOGIN;
-
         List<Address> addList = new OrderServiceImpl().findAddress(u);
         for (Address add : addList)
             addressList.add(add.getId());

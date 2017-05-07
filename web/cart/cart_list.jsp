@@ -56,7 +56,7 @@
                         <td class="buy_td_6">
                             <span class="objhide"><img/> <s:property value="#st.count"/> </span>
                         </td>
-                        <td>
+                        <td class="buy_title">
                             <a href="#"><s:property value="#item.value.product.title"/></a>
                         </td>
                         <td class="buy_td_5">
@@ -73,7 +73,7 @@
                                     <s:param name="count" value="-1"/>
                                   </s:url>"><input class="subtract" type="button" value="－"/></a>
                                 <%-- 值 --%>
-                            <input class="del_num" type="text" size="3" maxlength="3"
+                            <input class="del_num" readonly type="text" size="3" maxlength="3"
                                    value="<s:property value="#item.value.count"/>"/>
                                 <%-- 加 --%>
                             <a href="<s:url namespace='/cart' action='updateCart'>
@@ -208,6 +208,27 @@
         $("#total_account").text(total);
         $("#total_economy").html(realTotal - total);
 
+    });
+
+    $(function () {
+        // 展示区商品名称
+        var title = $(".buy_title");
+        // 恢复区商品名称
+        var delTitle = $(".t2");
+        // 用户删除恢复区
+        var delSpace = $("#divCartItemsRemoved");
+        // 用户商品展示区
+        var buySpace = $("#div_choice");
+        if (delTitle.find("a").html() === null) {
+            delSpace.hide();
+        } else {
+            delSpace.show();
+        }
+        if (title.find("a").html() === null) {
+            buySpace.hide();
+        } else {
+            buySpace.show();
+        }
     });
 
 </script>

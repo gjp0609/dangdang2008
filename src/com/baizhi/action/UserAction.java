@@ -87,11 +87,9 @@ public class UserAction extends BaseAction {
             if (!typeUUID.equals(getSessionValue("uuid"))) throw new RuntimeException("验证码不正确");
             user.setStatus("Y");
             i = new UserServiceImpl().modifyUser(user);
-            System.out.println(i);
         } catch (Exception e) {
             msg = e.getMessage();
             e.printStackTrace();
-            System.out.println(i);
             return "verify";
         }
         return SUCCESS;
