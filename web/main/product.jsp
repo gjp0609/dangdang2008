@@ -9,7 +9,7 @@
     <script type="text/javascript" src="<s:url value="../js/jquery-1.7.2.min.js"/>"></script>
     <script type="text/javascript">
         function addProduct(productId) {
-            $.ajax("<s:url namespace="/cart" action="updateCart"/>?product.id=" + productId + "&count=1");
+            $.ajax("<s:url namespace="/cart" action="AddToCart"/>?product.id=" + productId + "&count=1");
             alert("已加入购物车");
         }
     </script>

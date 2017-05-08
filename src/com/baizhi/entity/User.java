@@ -1,12 +1,13 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户实体类
  * Created by gjp06 on 17.4.30.
  */
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String email;
     private String nickname;

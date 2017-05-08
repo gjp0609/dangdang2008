@@ -1,11 +1,12 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by gjp06 on 17.5.2.
  */
-public class Product {
+public class Product implements Serializable {
     private Integer id;
     private String title;
     private Double realPrice;

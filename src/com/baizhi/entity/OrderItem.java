@@ -1,9 +1,11 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by gjp06 on 17.5.4.
  */
-public class OrderItem {
+public class OrderItem implements Serializable{
     private Integer id;
     private Product product;
     private Integer count;

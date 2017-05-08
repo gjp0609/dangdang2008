@@ -7,10 +7,10 @@
 <struts>
     <package name="cart" namespace="/cart" extends="struts-default">
 
-        <action name="updateCart" class="com.baizhi.action.CartAction" method="updateCart">
+        <action name="AddToCart" class="com.baizhi.action.CartAction" method="addToCart">
             <result name="success" type="redirect">/cart/cart_list.jsp</result>
         </action>
-        <action name="deleteFromCart" class="com.baizhi.action.CartAction" method="deleteFromCart">
+        <action name="updateCart" class="com.baizhi.action.CartAction" method="updateCart">
             <result name="success" type="redirect">/cart/cart_list.jsp</result>
         </action>
     </package>

@@ -1,9 +1,11 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by gjp06 on 17.5.5.
  */
-public class CartItem {
+public class CartItem implements Serializable {
     private Product product;
     private Integer count;
     private String status;

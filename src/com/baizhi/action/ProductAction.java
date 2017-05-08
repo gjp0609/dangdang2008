@@ -64,10 +64,10 @@ public class ProductAction extends BaseAction {
     }
 
     public String bookList() {
-        System.out.println("\nproduct->" + product + "\ntype->" + type + "\norder->" + order + "\n");
+//        System.out.println("\nproduct->" + product + "\ntype->" + type + "\norder->" + order + "\n");
         ProductServiceImpl service = new ProductServiceImpl();
         productList = service.findProductByCdt(product, page, type, order);
-        System.out.println(productList);
+//        System.out.println(productList);
         return SUCCESS;
     }
 

@@ -1,9 +1,11 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by gjp06 on 17.5.4.
  */
-public class Address {
+public class Address implements Serializable {
     private Integer id;
     private String name;
     private String address;

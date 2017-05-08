@@ -154,7 +154,6 @@
                     <span class="list_r_list_button">
                     <a href="javascript:void(0)" onclick="addProduct(<s:property value="#book.id"/>)"><img
                             src='<s:url value="../images/buttom_goumai.gif"/>'/> </a>
-                    <%--<span id="cartinfo"></span>--%>
                 </span>
                 </div>
                 <div class="clear"></div>
@@ -234,7 +233,7 @@
     });
 
     function addProduct(productId) {
-        $.ajax("<s:url namespace="/cart" action="updateCart"/>?product.id=" + productId + "&count=1");
+        $.ajax("<s:url namespace="/cart" action="AddToCart"/>?product.id=" + productId + "&count=1");
         alert("已加入购物车");
     }
 

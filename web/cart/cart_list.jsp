@@ -68,7 +68,7 @@
                         </td>
                         <td class="buy_td_1">
                                 <%-- 减 --%>
-                            <a href="<s:url namespace='/cart' action='updateCart'>
+                            <a href="<s:url namespace='/cart' action='AddToCart'>
                                     <s:param name="product.id" value="#item.key"/>
                                     <s:param name="count" value="-1"/>
                                   </s:url>"><input class="subtract" type="button" value="－"/></a>
@@ -76,13 +76,13 @@
                             <input class="del_num" readonly type="text" size="3" maxlength="3"
                                    value="<s:property value="#item.value.count"/>"/>
                                 <%-- 加 --%>
-                            <a href="<s:url namespace='/cart' action='updateCart'>
+                            <a href="<s:url namespace='/cart' action='AddToCart'>
                                     <s:param name="product.id" value="#item.key"/>
                                     <s:param name="count" value="1"/>
                                  </s:url>"><input class="subtract" type="button" value="＋"/></a>
                         </td>
                         <td>
-                            <a href="<s:url namespace='/cart' action='deleteFromCart'/>?product.id=<s:property value="#item.key"/>">删除</a>
+                            <a href="<s:url namespace='/cart' action='updateCart'/>?product.id=<s:property value="#item.key"/>">删除</a>
                         </td>
                     </tr>
                 </s:if>
@@ -137,7 +137,7 @@
                         <span>￥<s:property value="#item.value.product.price"/></span>
                     </td>
                     <td width="56" class=buy_td_1>
-                        <a href="<s:url namespace='/cart' action='deleteFromCart'/>?product.id=<s:property value="#item.key"/>">恢复</a>
+                        <a href="<s:url namespace='/cart' action='updateCart'/>?product.id=<s:property value="#item.key"/>">恢复</a>
                     </td>
                     <td width="16" class=objhide>
                         &nbsp;

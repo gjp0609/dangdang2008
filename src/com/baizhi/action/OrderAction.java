@@ -75,9 +75,9 @@ public class OrderAction extends BaseAction {
             orderItem.setCount(cartItem.getCount());
             orderItem.setOrder(order);
             orderItems.add(orderItem);
-            service.addOrderItem(orderItem);
             tp += cartItem.getProduct().getPrice() * cartItem.getCount();
         }
+        service.addOrderItem(orderItems);
         order.setItems(orderItems);
         order.setTotalPrice(tp);
 

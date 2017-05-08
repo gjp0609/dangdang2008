@@ -10,14 +10,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 购物车
  * Created by gjp06 on 17.5.5.
  */
 public class CartAction extends BaseAction {
     private Product product = new Product();
     private Integer count = 0;
 
-
-    public String deleteFromCart() {
+    /**
+     * 更新购物车
+     * @return 返回
+     */
+    public String updateCart() {
         if (product.getId() != null) {
             Object o = getSessionValue("items");
             // 若购物车不为 null 则取出购物车，购物车为 null 则存入新的购物车
@@ -45,7 +49,7 @@ public class CartAction extends BaseAction {
      *
      * @return null
      */
-    public String updateCart() {
+    public String addToCart() {
         System.out.println(product);
         if (product.getId() == null || count == null) return null;
         Map<Integer, CartItem> items = new HashMap<>();
@@ -82,10 +86,6 @@ public class CartAction extends BaseAction {
         items.put(p.getId(), item);
         // 把购物车对象存入 session
         setSessionValue("items", items);
-//        for (Map.Entry<Integer, CartItem> ca : items.entrySet()) {
-//            System.out.println("     -->" + ca.getValue().getProduct().getTitle()
-//                    + " " + ca.getValue().getCount());
-//        }
         return SUCCESS;
     }
 

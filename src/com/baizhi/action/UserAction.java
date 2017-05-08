@@ -20,6 +20,7 @@ public class UserAction extends BaseAction {
     private String code = "";
     // 用户输入的激活验证码
     private String typeUUID = "";
+    private String uuid = "";
 
     /**
      * 用户登陆 action
@@ -40,7 +41,7 @@ public class UserAction extends BaseAction {
             if (loginStatus != null) return "redirect";
         } catch (Exception e) {
             msg = e.getMessage();
-            e.printStackTrace();
+//            e.printStackTrace();
             return LOGIN;
         }
         return SUCCESS;
@@ -63,14 +64,18 @@ public class UserAction extends BaseAction {
             if (findUser != null) throw new RuntimeException("该用户已存在");
             // 添加用户
             service.addUser(user);
-            String uuid = UUID.randomUUID().toString().replace("-", "");
-            setSessionValue("uuid", uuid);
-            System.out.println(uuid);
         } catch (Exception e) {
             msg = e.getMessage();
-            e.printStackTrace();
+//            e.printStackTrace();
             return "register";
         }
+        return SUCCESS;
+    }
+
+    public String createUUID() {
+        uuid = UUID.randomUUID().toString().replace("-", "");
+        setSessionValue("uuid", uuid);
+        System.out.println(uuid);
         return SUCCESS;
     }
 
@@ -89,7 +94,7 @@ public class UserAction extends BaseAction {
             i = new UserServiceImpl().modifyUser(user);
         } catch (Exception e) {
             msg = e.getMessage();
-            e.printStackTrace();
+//            e.printStackTrace();
             return "verify";
         }
         return SUCCESS;
@@ -138,5 +143,13 @@ public class UserAction extends BaseAction {
 
     public void setTypeUUID(String typeUUID) {
         this.typeUUID = typeUUID;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

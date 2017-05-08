@@ -12,12 +12,15 @@
             <result name="redirect" type="redirect">/order/redirect.jsp</result>
         </action>
         <action name="register" class="com.baizhi.action.UserAction" method="register">
-            <result name="success" type="dispatcher">verify_form.jsp</result>
+            <result name="success" type="chain">createUUID</result>
             <result name="register" type="dispatcher">/user/register_form.jsp</result>
+        </action>
+        <action name="createUUID" class="com.baizhi.action.UserAction" method="createUUID">
+            <result name="success" type="dispatcher">/user/verify_form.jsp</result>
         </action>
         <action name="checkUUID" class="com.baizhi.action.UserAction" method="checkUUID">
             <result name="success" type="dispatcher">/user/register_ok.jsp</result>
-            <result name="verify" type="chain">register</result>
+            <result name="verify" type="chain">createUUID</result>
         </action>
         <action name="logout" class="com.baizhi.action.UserAction" method="logout">
             <result name="success" type="redirect">/main/main.jsp</result>

@@ -20,5 +20,5 @@ public interface OrderService {
 
     public int addOrder(Order order);
 
-    public int addOrderItem(OrderItem orderItem);
+    public int addOrderItem(List<OrderItem> items);
 }

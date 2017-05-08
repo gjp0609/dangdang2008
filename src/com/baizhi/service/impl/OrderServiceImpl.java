@@ -41,9 +41,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int addOrderItem(OrderItem orderItem) {
+    public int addOrderItem(List<OrderItem> items) {
         OrderDao dao = MyBatisUtils.getMapper(OrderDao.class);
-        return dao.insertOrderItem(orderItem);
+        return dao.insertOrderItem(items);
     }
 
 

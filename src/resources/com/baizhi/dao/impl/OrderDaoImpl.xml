@@ -8,12 +8,18 @@
         INSERT INTO T_DANGDANG_ADDRESS VALUES (#{id}, #{name},#{address},#{code},#{tphone},#{mphone},#{user.id})
     </insert>
 
-    <insert id="insertOrderItem">
-        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
-            SELECT T_DANGDANG_ORDER_ITEM_SEQ.nextval FROM dual
+    <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <selectKey resultType="Integer" keyProperty="id">
+            SELECT T_DANGDANG_ORDER_ITEM_SEQ.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO T_DANGDANG_ORDER_ITEM VALUES
-        (#{id},#{product.id},#{count},#{order.id})
+        INSERT INTO T_DANGDANG_ORDER_ITEM (PRODUCT_ID, COUNT, ORDER_ID)
+        <foreach collection="list" item="item" index="index" separator=" UNION ALL ">
+            SELECT
+            #{item.product.id,jdbcType=NUMERIC},
+            #{item.count,jdbcType=NUMERIC},
+            #{item.order.id,jdbcType=NUMERIC}
+            FROM dual
+        </foreach>
     </insert>
 
     <insert id="insertOrder">

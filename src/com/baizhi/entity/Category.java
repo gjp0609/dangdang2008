@@ -1,11 +1,12 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by gjp06 on 17.5.2.
  */
-public class Category {
+public class Category implements Serializable {
     private Integer id;
     private String name;
     private Integer count;
