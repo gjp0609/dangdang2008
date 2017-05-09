@@ -5,7 +5,6 @@
 </h2>
 <div id=__bianjituijian/danpin>
     <div class=second_c_02>
-
         <s:iterator value="productList" var="book">
             <div class=second_c_02_b1>
                 <div class=second_c_02_b1_1>

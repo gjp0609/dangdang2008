@@ -12,7 +12,7 @@ import com.baizhi.utils.SecurityUtils;
 public class UserServiceImpl implements UserService {
     @Override
     public User findUser(String email) {
-        User user = null;
+        User user;
         try {
             if (email == null) throw new RuntimeException("请输入你的email");
             UserDao dao = MyBatisUtils.getMapper(UserDao.class);

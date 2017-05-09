@@ -20,14 +20,14 @@
         <div class="center">
             <div style="height: 30px; padding: 5px; color: red" id="divErrorMssage">
                 <s:property value="msg"/>
-            </div><s:property value="msg"/>
+            </div>
+            <s:property value="msg"/>
             <div class="main">
                 <h3>
                     登录当当网
                 </h3>
 
-                <form method="post" action="<s:url namespace="/user" action="login"/>" id="ctl00"
-                      onsubmit="return checkAll()">
+                <form method="post" action="<s:url namespace="/user" action="login"/>" id="ctl00">
                     <ul>
                         <li>
                             <span>请输入Email地址：</span>
@@ -37,7 +37,7 @@
                         <li>
                             <span class="blank">密码：</span>
                             <input type="password" name="user.password" id="txtPassword"
-                                  value="<s:property value="user.password"/>" class="textbox"/>
+                                   value="<s:property value="user.password"/>" class="textbox"/>
                         </li>
                         <li>
                             <input type="submit" id="btnSignCheck" class="button_enter"
@@ -87,6 +87,24 @@
         if (!checkEmail()) return false;
         else return checkPassword();
     }
+
+    var frm = $("#ctl00");
+    frm.submit(function () {
+        if (checkAll()) {
+            $.ajax({
+                type: "post",
+                url: frm.attr("action") + "?" + frm.serialize(),
+                success: function (mg) {
+                    if (mg !== "") {
+                        msg.html(mg);
+                    } else {
+                        location.href = "<s:url value="../main/main.jsp"/>";
+                    }
+                }
+            });
+        }
+        return false;
+    });
 
 </script>
 </body>

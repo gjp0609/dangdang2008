@@ -6,6 +6,8 @@ import com.baizhi.service.impl.UserServiceImpl;
 import com.baizhi.utils.SecurityUtils;
 import org.apache.struts2.ServletActionContext;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 /**
@@ -27,7 +29,10 @@ public class UserAction extends BaseAction {
      *
      * @return LOGIN 跳转至登录界面<br/>SUCCESS 跳转至主页
      */
-    public String login() {
+    public String login() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
         try {
             UserService service = new UserServiceImpl();
             User newUser = service.findUser(user.getEmail());
@@ -40,10 +45,10 @@ public class UserAction extends BaseAction {
             Object loginStatus = getSessionValue("loginStatus");
             if (loginStatus != null) return "redirect";
         } catch (Exception e) {
-            msg = e.getMessage();
-//            e.printStackTrace();
-            return LOGIN;
+            out.print(e.getMessage());
+            return null;
         }
+        out.close();
         return SUCCESS;
     }
 
@@ -52,7 +57,10 @@ public class UserAction extends BaseAction {
      *
      * @return register 跳转至注册页<br/>SUCCESS 跳转至验证页
      */
-    public String register() {
+    public String register() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
         try {
             UserServiceImpl service = new UserServiceImpl();
             // 验证码
@@ -65,10 +73,10 @@ public class UserAction extends BaseAction {
             // 添加用户
             service.addUser(user);
         } catch (Exception e) {
-            msg = e.getMessage();
-//            e.printStackTrace();
-            return "register";
+            out.print(e.getMessage());
+            return null;
         }
+        out.close();
         return SUCCESS;
     }
 

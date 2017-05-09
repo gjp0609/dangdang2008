@@ -1,4 +1,4 @@
- <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html;charset=utf-8" %>
 <html>
 <head>
@@ -14,10 +14,9 @@
     <span class="red_bold">1.填写信息</span> > 2.验证邮箱 > 3.注册成功
 </div>
 <div class="fill_message">
-    <form name="ctl00" method="post" action="<s:url namespace="/user" action="register"/>" id="f"
-          onsubmit="return checkAll()">
+    <form name="ctl00" method="post" action="<s:url namespace="/user" action="register"/>" id="frm">
         <h2>
-            以下均为必填项 <span id="msg" style="color:red"><s:property value="msg"/></span>
+            以下均为必填项 <span id="msg" style="color:red"> <s:property value="msg"/></span>
         </h2>
         <table class="tab_login">
             <tr>
@@ -99,13 +98,14 @@
         </table>
 
         <div class="login_in">
-
             <input id="btnClientRegister" class="button_1" name="submit" type="submit" value="注 册"/>
         </div>
     </form>
 </div>
 <%@include file="../common/foot1.jsp" %>
 <script>
+
+    var msg = $("#msg");
 
     $("#img").click(function () {
         $("#imgVcode").get(0).src = "<s:url namespace="/common" action="getVcode"/>?time=" + new Date().getTime();
@@ -164,6 +164,28 @@
         else if (!checkPassword()) return false;
         else return checkRePassword();
     }
+    var frm = $("#frm");
+    frm.submit(function () {
+        return false;
+        alert(123);
+        if (checkAll()) {
+            alert(123);
+            $.ajax({
+                type: "post",
+                url: frm.attr("action") + "?" + frm.serialize(),
+                success: function (mg) {
+                    alert(mg);
+                    if (mg !== "") {
+                        msg.html(mg);
+                    } else {
+                        location.href = "<s:url namespace="/user" action="checkUUID"/>";
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
 </script>
 </body>
 </html>

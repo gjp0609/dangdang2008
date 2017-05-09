@@ -8,12 +8,12 @@
     <package name="user" namespace="/user" extends="struts-default">
         <action name="login" class="com.baizhi.action.UserAction" method="login">
             <result name="success" type="dispatcher">/main/main.jsp</result>
-            <result name="login" type="dispatcher">/user/login_form.jsp</result>
+            <!--<result name="login" type="dispatcher">/user/login_form.jsp</result>-->
             <result name="redirect" type="redirect">/order/redirect.jsp</result>
         </action>
         <action name="register" class="com.baizhi.action.UserAction" method="register">
             <result name="success" type="chain">createUUID</result>
-            <result name="register" type="dispatcher">/user/register_form.jsp</result>
+            <!--<result name="register" type="dispatcher">/user/register_form.jsp</result>-->
         </action>
         <action name="createUUID" class="com.baizhi.action.UserAction" method="createUUID">
             <result name="success" type="dispatcher">/user/verify_form.jsp</result>
