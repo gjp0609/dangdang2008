@@ -29,6 +29,7 @@
 
     <!--左栏开始-->
     <div id="left" class="book_left">
+        <%-- 调用查找分类 action  --%>
         <s:action namespace="/category" name="findCategories" executeResult="true"/>
     </div>
     <!--左栏结束-->
@@ -89,9 +90,10 @@
 </footer>
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 <script>
+    // 当鼠标放在图片上时，图片放大并跟随鼠标移动
     $(".pic").mouseover(function () {
         var src = this.src;
-        // 新建 div
+        // 新建 div，可调节图片大小
         var tooltip = "<div id='tooltip'><img width='300px' src=''/><\/div>";
         // 把它追加到文档中
         $("body").append(tooltip);
@@ -106,7 +108,7 @@
         // 设置图片属性
         img.css("display", "block");
         img.css("position", "fixed");
-        // 设置位置
+        // 设置图片位置
         img.css("left", left + "px");
         img.css("top", top + "px");
     }).mouseout(function () {

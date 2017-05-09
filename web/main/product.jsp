@@ -15,8 +15,6 @@
     </script>
 </head>
 <body>
-<%--<div id="tag_box" style="DISPLAY: none; Z-INDEX: 10; POSITION: absolute"></div>--%>
-<%--<div id="div_shield"></div>--%>
 <div id="main">
     <div class="mainsearch"></div>
     <div class="wrap"><!--left start-->
@@ -39,18 +37,18 @@
                 <div class="book_right">
                     <div id="author_">作 　 者：<s:property value="product.author"/></div>
                     <div id="publisher_">出 版 社： <s:property value="product.publisher"/></div>
-                    <UL>
-                        <LI>出版时间： <s:date name="product.publishTime" format="yyyy-MM-dd"/></LI>
-                        <LI>字　　数： <s:property value="product.wordCount"/>万</LI>
-                        <LI>版　　次： <s:property value="product.publishEdtion"/></LI>
-                        <LI>页　　数： <s:property value="product.pageCount"/></LI>
-                        <LI>印刷时间： <s:date name="product.printTime" format="yyyy-MM-dd"/></LI>
-                        <LI>开　　本： <s:property value="product.bookSize"/>开</LI>
-                        <LI>印　　次： <s:property value="product.printEdtion"/></LI>
-                        <LI>纸　　张： <s:property value="product.paper"/></LI>
-                        <LI>I S B N： <s:property value="product.isbn"/></LI>
-                        <LI>包　　装： <s:property value="product.pack"/></LI>
-                    </UL>
+                    <ul>
+                        <li>出版时间： <s:date name="product.publishTime" format="yyyy-MM-dd"/></li>
+                        <li>字　　数： <s:property value="product.wordCount"/>万</li>
+                        <li>版　　次： <s:property value="product.publishEdtion"/></li>
+                        <li>页　　数： <s:property value="product.pageCount"/></li>
+                        <li>印刷时间： <s:date name="product.printTime" format="yyyy-MM-dd"/></li>
+                        <li>开　　本： <s:property value="product.bookSize"/>开</li>
+                        <li>印　　次： <s:property value="product.printEdtion"/></li>
+                        <li>纸　　张： <s:property value="product.paper"/></li>
+                        <li>I S B N： <s:property value="product.isbn"/></li>
+                        <li>包　　装： <s:property value="product.pack"/></li>
+                    </ul>
                     <div id="__categroy_bk">所属分类：图书 >>
                         <s:action namespace="/category" name="findParent" executeResult="true">
                             <s:param name="id" value="product.category.id"/>
@@ -74,30 +72,30 @@
                 <div id="__zhinengbiaozhu_bk">
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        编辑推荐</H2>
+                        编辑推荐</h2>
                     <div class="zhengwen">
                         <s:property value="product.recommend"/>
                     </div>
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        内容简介</H2>
+                        内容简介</h2>
                     <div class="zhengwen"><s:property value="product.details"/></div>
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        作者简介</H2>
+                        作者简介</h2>
                     <div class="zhengwen"><s:property value="product.author"/>
                         <s:property value="product.authorDetails"/></div>
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        目录</H2>
+                        目录</h2>
                     <div class="zhengwen"><s:property value="product.catalogue"/></div>
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        媒体评论</H2>
+                        媒体评论</h2>
                     <div class="zhengwen"><s:property value="product.commend"/></div>
                     <div class="dashed"></div>
                     <h2 class="black14"><img src="../product_files/bg_point1.gif" align="absMiddle">
-                        书摘插图</H2>
+                        书摘插图</h2>
                     <div class="zhengwen">
                         <s:property value="product.digest"/>
                     </div>
@@ -107,7 +105,7 @@
         </div>
         <div id="tag_box" style="display: none; z-index: 2; position: absolute;">
         </div>
-        <div id="tag_box_pay" style=" DISPLAY: none; Z-INDEX: 2; POSITION: absolute; ">
+        <div id="tag_box_pay" style=" display: none; z-index: 2; position: absolute; ">
         </div>
         <div id="div_shield"></div><!--页尾 开始 -->
         <div class="public_footer_add_s"></div><!--09.3.10new-->
