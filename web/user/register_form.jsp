@@ -14,7 +14,7 @@
     <span class="red_bold">1.填写信息</span> > 2.验证邮箱 > 3.注册成功
 </div>
 <div class="fill_message">
-    <form name="ctl00" method="post" action="<s:url namespace="/user" action="register"/>" id="frm">
+    <form name="ctl00" id="ctl000" method="post" action="<s:url namespace="/user" action="register"/>" >
         <h2>
             以下均为必填项 <span id="msg" style="color:red"> <s:property value="msg"/></span>
         </h2>
@@ -164,27 +164,45 @@
         else if (!checkPassword()) return false;
         else return checkRePassword();
     }
-    var frm = $("#frm");
+
+    var frm = $("#ctl000");
     frm.submit(function () {
-        return false;
-        alert(123);
         if (checkAll()) {
-            alert(123);
-            $.ajax({
-                type: "post",
-                url: frm.attr("action") + "?" + frm.serialize(),
-                success: function (mg) {
-                    alert(mg);
-                    if (mg !== "") {
-                        msg.html(mg);
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", "<s:url namespace='/user' action='login'/>", true);
+            // 使用 post 方式提交数据需设置 content-type
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            xhr.send(frm.serialize());
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var result = xhr.responseText;
+                    if (result !== "") {
+                        msg.html(result);
                     } else {
                         location.href = "<s:url namespace="/user" action="checkUUID"/>";
                     }
                 }
-            });
+            };
         }
         return false;
     });
+    <%--if (checkAll()) {--%>
+    <%--alert(123);--%>
+    <%--$.ajax({--%>
+    <%--type: "post",--%>
+    <%--url: frm.attr("action") + "?" + frm.serialize(),--%>
+    <%--success: function (mg) {--%>
+    <%--alert(mg);--%>
+    <%--if (mg !== "") {--%>
+    <%--msg.html(mg);--%>
+    <%--} else {--%>
+    <%--location.href = "<s:url namespace="/user" action="checkUUID"/>";--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--}--%>
+    <%--return false;--%>
+    //    });
 
 </script>
 </body>

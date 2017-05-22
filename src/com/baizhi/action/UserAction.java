@@ -30,6 +30,7 @@ public class UserAction extends BaseAction {
      * @return LOGIN 跳转至登录界面<br/>SUCCESS 跳转至主页
      */
     public String login() throws Exception {
+        System.out.println(user);
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();

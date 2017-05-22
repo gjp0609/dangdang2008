@@ -90,22 +90,36 @@
 
     var frm = $("#ctl00");
     frm.submit(function () {
+        var ok = false;
         if (checkAll()) {
-            $.ajax({
-                type: "post",
-                url: frm.attr("action") + "?" + frm.serialize(),
-                success: function (mg) {
-                    if (mg !== "") {
-                        msg.html(mg);
-                    } else {
-                        location.href = "<s:url value="../main/main.jsp"/>";
-                    }
-                }
-            });
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", "<s:url namespace='/user' action='login'/>", false);
+            // 使用 post 方式提交数据需设置 content-type
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            xhr.send(frm.serialize());
+            var result = xhr.responseText;
+            if (result !== "") {
+                msg.html(result);
+            } else {
+                ok = true;
+            }
         }
-        return false;
+        return ok;
     });
-
+    <%--if (checkAll()) {--%>
+    <%--$.ajax({--%>
+    <%--type: "post",--%>
+    <%--url: frm.attr("action") + "?" + frm.serialize(),--%>
+    <%--success: function (mg) {--%>
+    <%--if (mg !== "") {--%>
+    <%--msg.html(mg);--%>
+    <%--} else {--%>
+    <%--location.href = "<s:url value="../main/main.jsp"/>";--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--}--%>
+    <%--return false;--%>
 </script>
 </body>
 <%--<s:debug/>--%>
